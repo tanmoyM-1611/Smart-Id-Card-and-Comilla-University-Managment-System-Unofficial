@@ -1,0 +1,140 @@
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 70px;
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Style page content */
+  .main {
+    margin-left: 150px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  /* for login */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif
+  }
+ 
+  body {
+      background: #ecf0f3
+  }
+ 
+  .wrapper {
+      max-width: 350px;
+      min-height: 500px;
+      margin: 80px auto;
+      padding: 40px 30px 30px 30px;
+      background-color: #ecf0f3;
+      border-radius: 15px;
+      box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff
+  }
+ 
+  .logo {
+      width: 80px;
+      margin: auto
+  }
+ 
+  .logo img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0px 0px 3px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaa7, -8px -8px 15px #fff
+  }
+ 
+  .wrapper .name {
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 1.3px;
+      padding-left: 10px;
+      color: #555
+  }
+ 
+  .wrapper .form-field input {
+      width: 100%;
+      display: block;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 1.2rem;
+      color: #666;
+      padding: 10px 15px 10px 10px
+  }
+ 
+  .wrapper .form-field {
+      padding-left: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff
+  }
+ 
+  .wrapper .form-field .fas {
+      color: #555
+  }
+ 
+  .wrapper .btn {
+      box-shadow: none;
+      width: 100%;
+      height: 40px;
+      background-color: #03A9F4;
+      color: #fff;
+      border-radius: 25px;
+      box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+      letter-spacing: 1.3px
+  }
+ 
+  .wrapper .btn:hover {
+      background-color: #039BE5
+  }
+ 
+  .wrapper a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #03A9F4
+  }
+ 
+  .wrapper a:hover {
+      color: #039BE5
+  }
+
+.logOutBtn{
+      padding-top: 60px;
+  }
+ 
+  @media(max-width: 380px) {
+      .wrapper {
+          margin: 30px 20px;
+          padding: 40px 15px 15px 15px
+      }
+  }
