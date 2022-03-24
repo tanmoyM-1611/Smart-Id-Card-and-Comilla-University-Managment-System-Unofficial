@@ -30,7 +30,7 @@
 
              else{
               echo '<script type ="text/JavaScript">';  
-              echo "alert('Donot Found')";  
+              echo "alert('Don't found any data!')";  
               echo '</script>'; 
              }
   
