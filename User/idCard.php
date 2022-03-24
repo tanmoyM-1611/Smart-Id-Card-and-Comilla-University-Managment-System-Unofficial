@@ -121,7 +121,7 @@
            }
            else{
             echo '<script type ="text/JavaScript">';  
-            echo "alert('Donot Found')";  
+            echo "alert('Don't found any data!')";  
             echo '</script>'; 
            }                   
              
@@ -444,7 +444,7 @@
             <a href="formfill.php">
                 <h3>Form Fillup</h3>
             </a>
-            <a href="#">
+            <a href="about.php">
                 <h3>About</h3>
             </a>
             <!-- <a href="#">Courses</a>
@@ -463,7 +463,7 @@
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">CSE,Comilla University</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -471,7 +471,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-                    </div>
+                    </div> -->
                 </div>
             </nav>
             <!-- Navigation bar end  -->

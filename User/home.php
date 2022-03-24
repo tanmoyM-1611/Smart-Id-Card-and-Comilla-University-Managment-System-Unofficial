@@ -49,7 +49,7 @@
 <body class="sb-nav-fixed ">
 
     <section>
-   
+
         <div class="sidenav">
             <a href="home.php">
                 <h3>Home</h3>
@@ -78,16 +78,16 @@
         </div>
 
         <div class="main">
-          
+
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
-                   
+                
                     <a class="navbar-brand" href="#">CSE,Comilla University</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button>
+                    </button> -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
@@ -95,11 +95,12 @@
                 </div>
             </nav>
             <div class="alert alert-warning mt-2 d-flex " role="alert">
-                
+
                 <div class="me-2 icon hidden-xs">
                     <i class="fa fa-exclamation-circle"></i>
                 </div>
-                Please Fill The Form carefully.After Submission,Please Waiting For Admin Verification.Without Verification You Cannot Download Id Card and Admit Card.Thank You!
+                Please Fill The Form carefully.After Submission,Please Waiting For Admin Verification.Without
+                Verification You Cannot Download Id Card and Admit Card.Thank You!
 
             </div>
             <div class="container mt-3 mb-3" id="collapseExample">
@@ -117,7 +118,8 @@
                         <!-- name -->
                         <div class="col-12">
                             <label for="inputName" class="form-label">Name</label>
-                            <input type="text" name="stdName" class="form-control" id="inputName" placeholder="" required>
+                            <input type="text" name="stdName" class="form-control" id="inputName" placeholder=""
+                                required>
                         </div>
                         <!-- Fathers Name -->
                         <div class="col-md-6">
@@ -172,7 +174,8 @@
                         <!-- Nationality -->
                         <div class="col-md-6">
                             <label for="inputNationality" class="form-label">Nationality</label>
-                            <input type="text" name="stdNationality" class="form-control" id="inputNationality" required>
+                            <input type="text" name="stdNationality" class="form-control" id="inputNationality"
+                                required>
                         </div>
                         <!-- Mobile -->
                         <div class="col-md-6">
