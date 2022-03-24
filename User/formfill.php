@@ -6,9 +6,9 @@
   if(isset($_POST['search'])){
 
        $id_no = $_POST['id_no'];
-       $data= $studentInfo->display_data_by_id($id_no);
+       $data= $studentInfo->display_data_by_id_fromUser($id_no);
 
-                 
+             if($data){    
                        
                       $stdDeptName=$data["stdDeptName"];
   $stdHallName=$data["stdHallName"];
@@ -26,7 +26,13 @@
   $stdParmanentAddress=$data["stdParmanentAddress"];
   $std_img=$data["std_img"];
        
+             }
 
+             else{
+              echo '<script type ="text/JavaScript">';  
+              echo "alert('Donot Found')";  
+              echo '</script>'; 
+             }
   
 
   }
@@ -110,6 +116,7 @@
 
 <div class="row " style=" ">
 <div class="col-sm-5   mt-3 mb-3">
+  <p>Attach Your Picture:</p>
 <img style="width:170px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>" alt="" srcset="">
   </div>
 
@@ -129,7 +136,7 @@
 </div>
 
 
-<div class="col-sm-12 container  mt-3 mb-3">
+<div class="col-sm-12 container  mt-3 mb-1">
    <h3> <b> Exam Controller,</b></h3>
    <h4>Comilla University</h4>
    <br>
@@ -242,7 +249,53 @@
  <!-- for me -->
 
  <div class="  mt-2 container">
-     
+      <h4>Your Courses:</h4>
+         <div class="">
+         <div style="border:dotted" class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" height="150px" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Course Code</th>
+                                        <th>Course Title</th>
+                                        <th>Credit</th>
+                                        
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                   
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                  
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        
+
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                            
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
          <!-- <h4>Select Your Courses</h4> -->
          <!-- <div  class="col-12">
   <select  data-placeholder="Select Your Courses" multiple class="chosen-select" name="test" >
@@ -286,7 +339,7 @@
 </div>
   
  </div>
-<div class="ms-auto d-flex mt-5">
+<div style="margin-top:210px" class="ms-auto d-flex ">
     <div class="me-4">
       <p></p>
     <h2 style='font-size:12px;'>Your Signature</h2>   
@@ -297,6 +350,94 @@
     </div>
    
 </div>
+
+<div class="row  " style="border:dotted;margin-top:30px">
+
+
+
+<div class="col-sm-5   mt-3 mb-3">
+  <p>Attach Your Picture:</p>
+<img style="width:170px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>" alt="" srcset="">
+  </div>
+
+  <div class="col-sm-4  mt-3 mb-3">
+<img style="width:120px;padding:0px" src="../User//assets//images//coulogo3.jpg" alt="" srcset="">
+<br>
+     <h4 style="margin-left:-28px"><b>Comilla University</b> </h4>
+     <h4 style="margin-left:5px;"><b>Admit Card</b> </h4>
+  </div>
+   
+  
+ 
+
+
+  <!-- admit -->
+  <div  class="card card-body">
+      <h2 class="mb-3"><b>Final examination-20____</b> </h2>
+    <form onsubmit="return false" method="POST" enctype="multipart/form-data" class="row g-3">
+ 
+    
+
+    <div class="col-md-6">
+    <label for="" class="form-label">Semester No:</label>
+    <input type="number" class="form-control" name="stdSemNO" id="" >
+  </div>
+
+  <div class="col-md-6">
+    <label for="" class="form-label">Semester Final Year:</label>
+    <input type="number" class="form-control" name="stdSemYear" id="inputDeptName" >
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputDeptName" class="form-label">Department Name</label>
+    <input type="text" class="form-control" name="stdDeptName" id="inputDeptName" value="<?php if(isset($data)){echo $stdDeptName;}?>">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputHallName4" class="form-label">Hall</label>
+    <input type="text" value="<?php if(isset($data)){echo $stdHallName;}?>" class="form-control" name="stdHallName" id="inputHallName4">
+  </div>
+ 
+  
+  <div class="col-12">
+    <label for="inputName" class="form-label">Name</label>
+    <input type="text" name="stdName" class="form-control"  id="inputName" value="<?php if(isset($data)){echo $stdName;}?>" placeholder="">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputRegistrationNumber" class="form-label">Registration Number</label>
+    <input type="number" name="stdRegNumber" value="<?php if(isset($data)){ echo $stdRegNumber;}?>" class="form-control" id="inputRegNumber">
+  </div>
+    
+  <!-- Session -->
+    
+  <div class="col-md-6">
+    <label for="inputSession" class="form-label">Session</label>
+    <input type="text" name="stdSession" class="form-control" value="<?php if(isset($data)){ echo $stdSession;}?>" id="inputSession" placeholder="2017-18">
+  </div>
+  
+  <div class="col-md-12">
+    <label for="inputNumber" class="form-label">Phone Number</label>
+    <input type="number" name="stdPhnNumber" class="form-control" id="inputRegNumber" value="<?php if(isset($data)){ echo $stdPhnNumber;}?>">
+  </div>
+
+</form>
+</div>
+  
+<div style="margin-top:20px" class="ms-auto d-flex ">
+    <div class="me-4">
+      <p></p>
+    <h2 style='font-size:12px;'>Your Signature</h2>   
+    </div>
+    <div>
+      <p></p>
+    <h2 style='font-size:12px;'>Controller Of Examination's Signature</h2>   
+    </div>
+   
+</div>
+ 
+</div>
+
 <button id="download" class="downloadtable btn btn-primary mt-2"> Download Id Card</button>
 
 <!-- end -->
@@ -306,7 +447,7 @@
   
 
 </div>
-
+</div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="../User//multiselect-dropdown.js" ></script>

@@ -3,12 +3,13 @@
 
    $signUp=new deptProject;
     if(isset($_POST['user_signup'])){
-	$msg=$signUp->user_signup($_POST); 
+	$signUp->user_signup($_POST); 
 	}
 	$logIn=new deptProject;
 	if(isset($_POST['user_login'])){
-		$logIn->user_login($_POST);
+	$logIn->user_login($_POST);
 		  }
+		 
 
 ?>
 
@@ -20,12 +21,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-	<?php
-                 if(isset($msg)){
-                   echo $msg;
-                 }
+ <?php
+              
+			
                 
-              ?>
+              ?> 
 	<div class="main">  
 		
 		<input type="checkbox" id="chk" aria-hidden="true">
