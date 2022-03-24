@@ -572,3 +572,55 @@
            </di>
            
            <button id="demo" class="downloadtable btn btn-primary" onclick="downloadtable()"> Download Id Card</button>
+
+
+
+
+
+
+            <!-- <h4>Write Your Courses</h4>
+         <div class="card-body">
+         <div style="border:dotted" class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" height="150px" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Course Code</th>
+                                        <th>Course Title</th>
+                                        <th>Credit</th>
+                                        
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                   
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                  
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        
+
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                            
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->

@@ -213,7 +213,8 @@ if(isset($_POST["verified"])){
                         <!-- <input  id="verified-Button" class="form-control bg-warning" type="submit" value="Verified Information"
                             name="verified"> -->
 
-                            <button  id="verified-Button" type="submit" name="verified" class="btn btn-primary">Verified</button> 
+                        <button id="verified-Button" type="submit" name="verified"
+                            class="btn btn-primary">Verified</button>
 
                     </div>
                 </form>
@@ -222,10 +223,9 @@ if(isset($_POST["verified"])){
     </section>
 
     <script>
-
-// document.getElementById("verified-Button").onclick = function () {
-//     location.href = "www.youtube.com";
-//     };
+    // document.getElementById("verified-Button").onclick = function () {
+    //     location.href = "www.youtube.com";
+    //     };
     </script>
 </body>
 
