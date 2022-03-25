@@ -1,6 +1,13 @@
 <?php 
        
         include("../functionAdmin.php")  ;
+       
+        session_start();
+        $id=$_SESSION['userID'];
+        if($id==null){
+         header("location:login.php");
+        }
+
         $studentInfo=new deptProject;
         $html = '';
         if(isset($_POST['search'])){
@@ -192,19 +199,19 @@
         height: 45vh;
         margin: auto;
         background-color: white;
-        box-shadow: 0 1px 10px rgb(146 161 176 / 50%);
+        box-shadow: 0 1px 10px;
         overflow: hidden;
         border-radius: 10px;
     }
 
     .header {
-        /* border: 2px solid black; */
+        /* border: 2px solid black;  */
         width: 73vh;
         height: 14vh;
         margin: 10px auto;
         background-color: white;
-        /* box-shadow: 0 1px 10px rgb(146 161 176 / 50%); */
-        /* border-radius: 10px; */
+        /* box-shadow: 0 1px 10px; */
+         /* border-radius: 10px;  */
         background-image: url(assets/images/cou.PNG );
         overflow: hidden;
         font-family: 'Poppins', sans-serif;
@@ -291,7 +298,7 @@
         width: 20vh;
         height: 20vh;
         margin: 8px 35px 8px 40px;
-        padding-top: 11px;
+        padding-top: 15px;
     }
 
     .box-3 img {
@@ -395,7 +402,7 @@
         /* border: 2px solid rgb(255, 38, 0); */
         width: 22vh;
         height: 12vh;
-        margin: 0px 0px 0px 0px;
+        margin: 0px 0px 0px 8px;
         font-size: 15px;
     }
 
@@ -449,7 +456,7 @@
             </a>
             <!-- <a href="#">Courses</a>
   <a href="#">Faculty</a> -->
-            <a href="#">
+  <a href="contact.php">
                 <h3>Contact</h3>
             </a>
             <div style="padding-top:250px" class="ms-3">
@@ -554,7 +561,7 @@
                     jsPDF: {
                         unit: 'in',
                         format: 'letter',
-                        orientation: 'portrait'
+                        orientation: 'landscape'
                     }
                 };
                 html2pdf().from(idBody).set(opt).save();

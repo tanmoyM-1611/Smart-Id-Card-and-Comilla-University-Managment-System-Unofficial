@@ -1,6 +1,12 @@
 <?php
   include("../functionAdmin.php")  ;
   
+ session_start();
+ $id=$_SESSION['userID'];
+ if($id==null){
+  header("location:login.php");
+ }
+ 
   $studentInfo=new deptProject;
  
   if(isset($_POST['search'])){
@@ -87,7 +93,7 @@
             </a>
             <!-- <a href="#">Courses</a>
   <a href="#">Faculty</a> -->
-            <a href="#">
+  <a href="contact.php">
                 <h3>Contact</h3>
             </a>
             <div style="padding-top:250px" class="ms-3">
@@ -129,17 +135,17 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 container mt-3 mb-3">
-                <div id="form-body" class="container card card-body mt-3 mb-3" id="collapseExample">
+            <div  class="col-sm-12 container mt-5 mb-3">
+                <div  id="form-body" class="container card card-body mt-5 mb-3" id="collapseExample">
 
                     <div class="row " style=" ">
-                        <div class="col-sm-5   mt-3 mb-3">
+                        <div class="col-sm-5  mb-3">
                             <p>Attach Your Picture:</p>
                             <img style="width:170px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>"
                                 alt="" srcset="">
                         </div>
 
-                        <div class="col-sm-4  mt-3 mb-3">
+                        <div class="col-sm-4  mb-3">
                             <img style="width:120px;padding:0px" src="../User//assets//images//coulogo3.jpg" alt=""
                                 srcset="">
                             <br>
@@ -246,7 +252,7 @@
                                 <input type="text" name="stdReligion" class="form-control" id="inputReligion"
                                     value="<?php if(isset($data)){ echo $stdReligion;}?>">
                             </div>
-
+                                
                             <!-- Nationality -->
                             <div class="col-md-6">
                                 <label for="inputNationality" class="form-label">Nationality</label>
@@ -292,7 +298,7 @@
                             <div class="  mt-2 container">
                                 <h4>Your Courses:</h4>
                                 <div class="">
-                                    <div style="border:dotted" class="table-responsive">
+                                    <div style="border:1px solid" class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" height="150px" width="100%"
                                             cellspacing="0">
                                             <thead>
@@ -381,7 +387,7 @@
                     </div>
 
                 </div>
-                <div style="margin-top:210px" class="ms-auto d-flex ">
+                <div style="margin-top:180px" class="ms-auto d-flex ">
                     <div class="me-4">
                         <p></p>
                         <h2 style='font-size:12px;'>Your Signature</h2>
@@ -393,7 +399,7 @@
 
                 </div>
 
-                <div class="row  " style="border:dotted;margin-top:30px">
+                <div class="row  " style="border:dotted;margin-top:100px">
 
 
 
@@ -413,7 +419,7 @@
 
                     <!-- admit -->
                     <div class="card card-body">
-                        <h2 class="mb-3"><b>Final examination-20____</b> </h2>
+                        <h3 class="mb-3"><b>Final examination-20____</b> </h3>
                         <form onsubmit="return false" method="POST" enctype="multipart/form-data" class="row g-3">
 
 
@@ -472,7 +478,7 @@
                         </form>
                     </div>
 
-                    <div style="margin-top:20px" class="ms-auto d-flex ">
+                    <div style="margin-top:10px" class="ms-auto d-flex ">
                         <div class="me-4">
                             <p></p>
                             <h2 style='font-size:12px;'>Your Signature</h2>
@@ -486,7 +492,7 @@
 
                 </div>
 
-                <button id="download" class="downloadtable btn btn-primary mt-2"> Download Id Card</button>
+                <button id="download" class="downloadtable btn btn-primary mt-2"> Download Admit Card</button>
 
                 <!-- end -->
             </div>

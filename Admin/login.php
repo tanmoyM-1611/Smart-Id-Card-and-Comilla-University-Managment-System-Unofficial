@@ -36,7 +36,7 @@
         <div class="shape"></div>
     </div>
     <form action="" method="POST">
-        <h3>Admin</h3>
+        <h3>Admin Panel</h3>
 
         <label for="username">Username</label>
         <input name=admin_email type="text" placeholder="Email or Phone" id="username">
@@ -46,11 +46,7 @@
 
         <input class="button" type="submit" value="login" name="admin_logIn">
         <!-- <button>Log In</button> -->
-        <div class="social">
-            <div class="go"><i class="fab fa-google"></i> Google</div>
-            <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
-
-        </div>
+       
     </form>
 </body>
 

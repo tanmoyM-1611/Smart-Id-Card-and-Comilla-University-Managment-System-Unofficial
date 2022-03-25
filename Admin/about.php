@@ -75,20 +75,15 @@ include("../functionAdmin.php")  ;
 
 <body>
     <div class="sidenav">
-        <a href="home.php">
+    <a href="template.php">
             <h3>Home</h3>
         </a>
-        <a href="idCard.php">
-            <h3>Id Card</h3>
-        </a>
-      
-        <a href="formfill.php">
-                <h3>Form Fillup</h3>
-            </a>
+       
         <a href="about.php">
             <h3>About</h3>
         </a>
-        <a href="contact.php">
+       
+  <a href="contact.php">
                 <h3>Contact</h3>
             </a>
         <!-- <a href="#">Courses</a>

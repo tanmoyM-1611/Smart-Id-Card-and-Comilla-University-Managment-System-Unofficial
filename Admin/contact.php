@@ -1,13 +1,11 @@
 <?php
-include("../functionAdmin.php")  ;
- session_start();
- $id=$_SESSION['userID'];
- if($id==null){
-  header("location:login.php");
- }
+   include("../functionAdmin.php")  ;
+   session_start();
+   $id=$_SESSION['userID'];
+   if($id==null){
+    header("location:login.php");
+   }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,25 +73,17 @@ include("../functionAdmin.php")  ;
 
 <body>
     <div class="sidenav">
-        <a href="home.php">
+        <a href="template.php">
             <h3>Home</h3>
         </a>
-        <a href="idCard.php">
-            <h3>Id Card</h3>
-        </a>
-      
-        <a href="formfill.php">
-                <h3>Form Fillup</h3>
-            </a>
+       
         <a href="about.php">
             <h3>About</h3>
         </a>
-        <a href="contact.php">
+       
+  <a href="contact.php">
                 <h3>Contact</h3>
             </a>
-        <!-- <a href="#">Courses</a>
-  <a href="#">Faculty</a> -->
-       
         <div style="padding-top:250px" class="ms-4">
             <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
         </div>
@@ -124,30 +114,13 @@ include("../functionAdmin.php")  ;
         <div style="text-align:center ">
             <img src="../User//assets//images//cselogo.jpg" class="fostrap-logo mt-2 ms-4"/>
             <h1 class="heading">
-                Our Team
+                Contact Us
             </h1>
         </div>
 
 
-        <div class="row mt-4">
-            <h2 style="text-align:center;color:blue" class="mb-4">
-                Project Supervisor
-            </h2>
-            <div style="" class="col-lg-6 col-sm-3 col-md-3 teacher">
-                <div class="card" style="width: 300px;">
-                    <img  src="../User//assets//images//sir.jpg" class="card-img-top" alt="Sample Image">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Md. Mohibullah</h5>
-                        <p class="card-text">Assistant Professor, Computer Science and Engineering</p>
-                        <a href="https://www.cou.ac.bd/cse/mohibullah" class="btn btn-primary">View Profile</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <h2 style="text-align:center;color:blue" class="mt-3">
-            Project Members
-        </h2>
+       
+       
         <div class="row row-cols-1 row-cols-md-3 g-4 student mt-1">
 
             <div class=" col-md-3 col-lg-6 mb-4 ">
@@ -156,6 +129,8 @@ include("../functionAdmin.php")  ;
                     <div class="card-body text-center">
                         <h5 style="" class="card-title">Tanmoy Mondal</h5>
                         <p class="card-text">Student,Dept. Of Cse </p>
+                        <b  style="color:blue" class="card-text font-weight-bold">Email:mondal.tanmoy50@gmail.com </b>
+                        <b style="color:blue" class="card-text font-weight-bold">Phone:01777295553 </b>
                     </div>
                 </div>
             </div>
@@ -165,6 +140,8 @@ include("../functionAdmin.php")  ;
                     <div class="card-body text-center">
                         <h5 style="" class="card-title">Sohel Rana Hridoy</h5>
                         <p class="card-text">Student,Dept. Of Cse </p>
+                        <b style="color:blue" class="card-text ">Email:mondal.tanmoy50@gmail.com </b>
+                        <b style="color:blue" class="card-text ">Phone:01777295553 </b>
                     </div>
                 </div>
             </div>

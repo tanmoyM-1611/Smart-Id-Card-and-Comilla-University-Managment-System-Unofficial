@@ -60,17 +60,16 @@
             <a href="formfill.php">
                 <h3>Form Fillup</h3>
             </a>
-            <a href="AdmitCard.php">
-                <h3>AdmitCard</h3>
-            </a>
+            
             <a href="about.php">
                 <h3>About</h3>
             </a>
-            <!-- <a href="#">Courses</a>
-  <a href="#">Faculty</a> -->
-            <a href="#">
+            <a href="contact.php">
                 <h3>Contact</h3>
             </a>
+            <!-- <a href="#">Courses</a>
+  <a href="#">Faculty</a> -->
+           
             <div style="padding-top:250px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
@@ -149,7 +148,7 @@
                         <!-- img -->
                         <div class="col-md-4">
                             <label class="form-label" for="image">Upload your image(82*87)</label>
-                            <input class="form-control mb-2" type="file" name="std_img" required>
+                            <input class="form-control mb-2" type="file" name="std_img" >
                         </div>
                         <!-- DOB -->
                         <div class="col-md-2">

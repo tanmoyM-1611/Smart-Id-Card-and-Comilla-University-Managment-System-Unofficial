@@ -52,8 +52,8 @@
         <div class="sidenav">
 
             <a href="template.php">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="about.php">About</a>
+            <a href="contact.php">Contact</a>
 
             <div style="padding-top:420px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>

@@ -1,11 +1,11 @@
 <?php
    include("../functionAdmin.php")  ; 
    
-//    session_start();
-//    $id=$_SESSION['adminID'];
-//    if($id==null){
-//     header("location:login.php");
-//    }
+   session_start();
+   $id=$_SESSION['adminID'];
+   if($id==null){
+    header("location:login.php");
+   }
 
    $projectAdmin=new deptProject;
    $stdData= $projectAdmin->displayData();
@@ -73,9 +73,17 @@ if(isset($_POST["verified"])){
 <body>
     <section>
         <div class="sidenav">
-            <a href="template.php">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+        <a href="template.php">
+            <h3>Home</h3>
+        </a>
+       
+        <a href="about.php">
+            <h3>About</h3>
+        </a>
+       
+  <a href="contact.php">
+                <h3>Contact</h3>
+            </a>
 
             <div style="padding-top:420px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
