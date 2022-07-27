@@ -15,7 +15,7 @@ include("../functionAdmin.php")  ;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About</title>
     <link href="../Admin//style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -34,27 +34,28 @@ include("../functionAdmin.php")  ;
         }
 
         .teacher {
-            margin-left: 40px;
+            margin-left: 10px;
         }
 
         .student {
-            margin-left: 30px;
+            margin-left: 10px;
+           
         }
     }
 
-    @media (min-width: 760px) {
+    /* @media (min-width: 760px) {
         h1.heading {
             font-size: 3.05em;
         }
 
         .teacher {
-            margin-left: 310px;
+            margin-left: 550px;
         }
 
         .student {
-            margin-left: 310px;
+            margin-left: 10px;
         }
-    }
+    } */
 
     @media (min-width: 900px) {
         h1.heading {
@@ -63,11 +64,11 @@ include("../functionAdmin.php")  ;
         }
 
         .teacher {
-            margin-left: 610px;
+            margin-left: 520px;
         }
 
         .student {
-            margin-left: 320px;
+            margin-left: 300px;
         }
     }
     </style>
@@ -75,7 +76,7 @@ include("../functionAdmin.php")  ;
 
 <body>
     <div class="sidenav">
-    <a href="template.php">
+    <a href="homeAdmin.php">
             <h3>Home</h3>
         </a>
        

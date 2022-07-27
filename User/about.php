@@ -15,7 +15,7 @@ include("../functionAdmin.php")  ;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About</title>
     <link href="../Admin//style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -63,11 +63,11 @@ include("../functionAdmin.php")  ;
         }
 
         .teacher {
-            margin-left: 610px;
+            margin-left: 520px;
         }
 
         .student {
-            margin-left: 320px;
+            margin-left: 240px;
         }
     }
     </style>
@@ -133,7 +133,7 @@ include("../functionAdmin.php")  ;
             <h2 style="text-align:center;color:blue" class="mb-4">
                 Project Supervisor
             </h2>
-            <div style="" class="col-lg-6 col-sm-3 col-md-3 teacher">
+            <div style="" class=" teacher">
                 <div class="card" style="width: 300px;">
                     <img  src="../User//assets//images//sir.jpg" class="card-img-top" alt="Sample Image">
                     <div class="card-body text-center">

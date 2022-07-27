@@ -9,7 +9,7 @@
     session_start();
     $id=$_SESSION['adminID'];
     if($id){
-     header("location:template.php");
+     header("location:homeAdmin.php");
     }
 ?>
 
@@ -19,7 +19,7 @@
 
 <head>
     <!-- Design by foolishdeveloper.com -->
-    <title>Admin</title>
+    <title>Log in Admin</title>
     <link href="./login_style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

@@ -54,8 +54,8 @@
                                                   <img src='upload/$std_img'>
                                                   </div>
                                                   <div class='box-2'>
-                                                      <h2>$stdName</h2>
-                                                      <p>$stdHallName</p>
+                                                      <p><b>$stdName</b></p>
+                                                      <p>Hall:$stdHallName</p>
                                                       
                                                   </div>
 
@@ -111,7 +111,7 @@
                                                   <div class='info-4'>
                                                       <div class='sign'>
                                                           <br>
-                                                          <h5>$stdName</h5>
+                                                          <p>$stdName</p>
                                                           <p style='font-size:12px;'>Your Signature</p>
                                                       </div>
 
@@ -244,7 +244,7 @@
         border: 4px solid black;
         width: 90px;
         height: 95px;
-        margin: -30px 25px;
+        margin: -30px 15px;
         border-radius: 3px;
     }
 
@@ -252,15 +252,15 @@
 
         width: 82px;
         height: 87px;
-
+      
 
     }
 
     .box-2 {
         /* border: 2px solid purple; */
-        width: 33vh;
+        width: 25vh;
         height: 8vh;
-        margin: 7px 0px;
+        margin: 7px 0px 0px -12px;
         padding: 7px 7px 0px 0px;
         text-align: left;
         font-family: 'Poppins', sans-serif;
@@ -276,15 +276,16 @@
     }
 
     .box-2 p {
-        font-size: 1rem;
-        margin-top: -5px;
+        font-size: 11px;
+        /* font-weight: bold; */
+        margin-top: -4px;
         color: rgb(27, 27, 49);
     }
 
     .box-bar {
         width: 20vh;
         height: 20vh;
-
+        /* margin:0px20px 10px 0px; */
         padding-top: 11px;
     }
 
@@ -297,7 +298,7 @@
         /* border: 2px solid rgb(21, 255, 0); */
         width: 20vh;
         height: 20vh;
-        margin: 8px 35px 8px 40px;
+        margin: 8px 2px 8px 40px;
         padding-top: 15px;
     }
 
@@ -490,7 +491,7 @@
                     <div class="card ">
                         <div class="card-body">
                             <form class="form" method="POST" action="">
-                                <label for="exampleInputEmail1">Student Id Card No</label>
+                                <label for="exampleInputEmail1">Student ID:</label>
                                 <input class="form-control mt-3" type="search" placeholder="Enter Id Card No."
                                     name="id_no">
                                 <small id="emailHelp" class="form-text text-muted">Every student's should have unique Id

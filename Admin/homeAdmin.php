@@ -42,6 +42,9 @@
     </script>
 
     <script src="https://kit.fontawesome.com/5a1010e0a8.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
 </head>
 
@@ -51,7 +54,7 @@
     <section>
         <div class="sidenav">
 
-            <a href="template.php">Home</a>
+            <a href="homeAdmin.php">Home</a>
             <a href="about.php">About</a>
             <a href="contact.php">Contact</a>
 
@@ -75,10 +78,10 @@
 
                         </ul>
 
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <!-- <form class="d-flex">
+                            <input class="form-control me-2" type="text" id="mySearch" onkeyup="searchStudent()" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </nav>
@@ -92,7 +95,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>Registration Number</th>
@@ -134,6 +137,17 @@
                                     </tr>
                                     <?php } ?>
                                 </tbody>
+                                <tfoot>
+            <tr>
+                                        <th>Registration Number</th>
+                                        <th>Name</th>
+                                        <th>Department</th>
+                                        <th>Session</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+            </tr>
+        </tfoot>
                             </table>
                         </div>
                     </div>
@@ -156,8 +170,13 @@
             </div>
         </div>
     </section>
-    <script src="../Admin//js/scripts.js"></script>
+    <!-- <script src="../Admin//js/scripts.js"></script> -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
+        $(document).ready(function(){  
+      $('#table_data').DataTable();  
+ }); 
     </script>
 </body>
 

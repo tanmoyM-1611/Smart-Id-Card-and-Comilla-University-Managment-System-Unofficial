@@ -54,7 +54,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Form FillUp</title>
     <link rel="stylesheet" href="../User//style.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -141,7 +141,7 @@
                     <div class="row " style=" ">
                         <div class="col-sm-5  mb-3">
                             <p>Attach Your Picture:</p>
-                            <img style="width:170px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>"
+                            <img style="width:110px;height:100px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>"
                                 alt="" srcset="">
                         </div>
 
@@ -405,7 +405,7 @@
 
                     <div class="col-sm-5   mt-3 mb-3">
                         <p>Attach Your Picture:</p>
-                        <img style="width:170px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>" alt=""
+                        <img style="width:82px;height:87px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>" alt=""
                             srcset="">
                     </div>
 

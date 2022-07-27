@@ -17,7 +17,7 @@
 <html>
 
 <head>
-    <title>Slide Navbar</title>
+    <title>Log In</title>
     <link href="../User//login_style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>

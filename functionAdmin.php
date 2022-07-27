@@ -29,7 +29,7 @@
                $admin_info=mysqli_query($this->conn,$query);
 
                if($admin_info){
-                header("location:template.php");
+                header("location:homeAdmin.php");
                
                 $admin_data=mysqli_fetch_assoc($admin_info);
                  session_start();
@@ -151,7 +151,7 @@
            
         if(mysqli_query($this->conn,$query)){
         //    unlink('E:\xampp\htdocs\project-5th\User\upload/'.$delete_imgData);
-        header("location:template.php");
+        header("location:homeAdmin.php");
            return "delete data successfully";
 }
     }
@@ -212,7 +212,9 @@
 
         if(mysqli_query($this->conn,$query)){
              move_uploaded_file($tmp_name,'E:\xampp\htdocs\project-5th\User\upload/'.$update_std_img);
-           return "info update successfully";
+             header("location:homeAdmin.php");
+             return "info update successfully";
+           
 }
     }
 
@@ -227,7 +229,7 @@
         $query="UPDATE student_info SET stdStatus='$ustdStatus' WHERE id=$idno";
  
         if(mysqli_query($this->conn,$query)){
-                header("location:template.php");
+                header("location:homeAdmin.php");
            return "verified successfully";
 }
     }

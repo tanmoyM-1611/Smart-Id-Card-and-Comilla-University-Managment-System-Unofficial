@@ -33,7 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>User</title>
+    <title>User home</title>
     <link href="../Admin//style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -98,7 +98,7 @@
                 <div class="me-2 icon hidden-xs">
                     <i class="fa fa-exclamation-circle"></i>
                 </div>
-                Please Fill The Form carefully.After Submission,Please Waiting For Admin Verification.Without
+                Please Fill The Form Carefully.After Submission,Please Waiting For Admin Verification.Without
                 Verification You Cannot Download Id Card and Admit Card.Thank You!
 
             </div>
@@ -185,13 +185,13 @@
                         <div class="col-12">
                             <label for="inputPresentAddress" class="form-label">Present Address</label>
                             <input type="text" name="stdPresentAddress" class="form-control" id="inputAddress"
-                                placeholder="Manikganj" required>
+                                placeholder="Feni" required>
                         </div>
                         <!-- address2 -->
                         <div class="col-12">
                             <label for="inputParmanentAddress" class="form-label">Parmanent Address </label>
                             <input type="text" name="stdParmanentAddress" class="form-control" id="inputAddress2"
-                                placeholder="Feni" required>
+                                placeholder="Manikganj" required>
                         </div>
                         <div>
                             <input type="hidden" name="stdStatus" value="0">
