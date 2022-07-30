@@ -8,36 +8,17 @@
         header("location:login.php");
        }
        
-                                      
        $projectAdmin=new deptProject;
-
-       if(isset($_GET['status'])){
-        if($_GET['status']='addResult'){
-            $id=$_GET['id'];
-          $data= $projectAdmin->display_data_by_id_fromAdmin($id);
-          
-          $stdId=$data["id"];
-          $stdDeptName=$data["stdDeptName"];
-          $stdHallName=$data["stdHallName"];
-          $stdName=$data["stdName"];
-          $stdFatherName=$data["stdFatherName"];
-          $stdMotherName=$data["stdMotherName"];
-          $stdRegNumber=$data["stdRegNumber"];
-          $stdSession=$data["stdSession"];
-          $stdDOB=$data["stdDOB"];
-          $stdAge=$data["stdAge"];
-          $stdReligion=$data["stdReligion"];
-          $stdNationality=$data["stdNationality"];
-          $stdPhnNumber=$data["stdPhnNumber"];
-          $stdPresentAddress=$data["stdPresentAddress"];
-          $stdParmanentAddress=$data["stdParmanentAddress"];
-          $std_img=$data["std_img"];
-         
-               
-        }
-    }
-            
+       $courseData= $projectAdmin->displayCourseData();
         
+       //delete course
+       if(isset($_GET['status'])){
+        if($_GET['status']='deleteCourse'){
+            $deleteCourse_id=$_GET['id'];
+      $delMsg= $projectAdmin->deleteCourse_data_by_id($deleteCourse_id);
+        }
+        
+      }
 
              ?>
 <!doctype html>
@@ -117,11 +98,28 @@
                         </thead>
 
                         <tbody>
+                            <?php while($course=mysqli_fetch_assoc($courseData)) { ?>
+                            <tr>
+                                <td><?php  echo $course["course_session"];?></td>
+                                <td><?php  echo $course["course_semester"];?></td>
+                                <td><?php  echo $course["course_department"];?></td>
+                                <td><?php  echo $course["course_name"];?></td>
+                                <td><?php  echo $course["course_code"];?></td>
+                                <td><?php  echo $course["course_credit"];?></td>
+                                <td>
 
+                                   
+                                    <a class="btn btn-danger mt-2"
+                                        href="?status=deleteCourse&&id=<?php echo $course["addCourse_id"];?>"> Delete</a>
+
+                                 
+                                </td>
+                            </tr>
+                            <?php } ?>
                         </tbody>
                         <tfoot>
                             <tr>
-                            <th>Session</th>
+                                <th>Session</th>
                                 <th>Semester</th>
                                 <th>Department</th>
                                 <th>Course Name</th>
@@ -139,7 +137,7 @@
                 <a href="addCourses.php" class="btn btn-success mt-2">Add Courses!</a>
             </div>
 
-           
+
 
 
         </div>

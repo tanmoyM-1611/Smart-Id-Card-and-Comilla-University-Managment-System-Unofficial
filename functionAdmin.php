@@ -277,5 +277,26 @@
            }
     }
 
+    // display data for course
+    public function displayCourseData(){
+        $query="SELECT * FROM courses";
+        if(mysqli_query($this->conn,$query)){
+            $displayCourse_data=mysqli_query($this->conn,$query);
+            return $displayCourse_data;
+        }
+    }
+
+    // delete course
+    public function deleteCourse_data_by_id($id){
+       
+        $query="DELETE FROM courses WHERE addCourse_id=$id";
+           
+        if(mysqli_query($this->conn,$query)){
+        //    unlink('E:\xampp\htdocs\project-5th\User\upload/'.$delete_imgData);
+        header("location:courses.php");
+           return "delete course data successfully";
+}
+    }
+
     }
        ?>

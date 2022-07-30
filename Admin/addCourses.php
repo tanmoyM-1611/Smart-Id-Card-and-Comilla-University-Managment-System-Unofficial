@@ -15,13 +15,13 @@ $addCourseInfo=new deptProject;
    $courseInfo= $addCourseInfo->add_CourseInfo($_POST);
        if($courseInfo){
         echo '<script type ="text/JavaScript">';  
-        echo "alert('Info Added Succesfully')";  
+        echo "alert('Course Added Succesfully')";  
         echo '</script>'; 
        }
 
        else{
         echo '<script type ="text/JavaScript">';  
-        echo "alert('Info Donot Added Succesfully')";  
+        echo "alert('Course Don't Added Succesfully')";  
         echo '</script>'; 
        }
         }
@@ -112,9 +112,9 @@ $addCourseInfo=new deptProject;
                                 <select name="Course_session" class="form-select mt-3"
                                     aria-label="Default select example">
                                     <option selected>Choose Session</option>
-                                    <option value="1">2017-18</option>
-                                    <option value="2">2019-20</option>
-                                    <option value="3">2021-22</option>
+                                    <option value="2017-18">2017-18</option>
+                                    <option value="2019-20">2019-20</option>
+                                    <option value="2021-22">2021-22</option>
                                 </select>
                                 <br>
                                 <!-- Semester -->
@@ -122,9 +122,9 @@ $addCourseInfo=new deptProject;
                                 <select name="Course_semester" class="form-select mt-3"
                                     aria-label="Default select example">
                                     <option selected>Choose Semester</option>
-                                    <option value="1">1st</option>
-                                    <option value="2">2nd</option>
-                                    <option value="3">3rd</option>
+                                    <option value="1st">1st</option>
+                                    <option value="2nd">2nd</option>
+                                    <option value="3rd">3rd</option>
                                 </select>
                                 <br>
                                 <!-- Department -->
@@ -133,9 +133,9 @@ $addCourseInfo=new deptProject;
                                 <select name="Course_department" class="form-select mt-3"
                                     aria-label="Default select example">
                                     <option selected>Choose Department</option>
-                                    <option value="1">CSE</option>
-                                    <option value="2">ICT</option>
-                                    <option value="3">LAW</option>
+                                    <option value="CSE">CSE</option>
+                                    <option value="ICT">ICT</option>
+                                    <option value="LAW">LAW</option>
                                 </select>
 
                                 <br>
