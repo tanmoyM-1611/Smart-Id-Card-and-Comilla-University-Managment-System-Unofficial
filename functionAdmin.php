@@ -298,5 +298,41 @@
 }
     }
 
+    // add result student info
+
+    // public function add_result_StdInfo($data){
+    //     $student_id=$data["Student_id"];
+    //     $student_session=$data["Student_session"];
+    //     $student_semester=$data["Student_semester"];
+       
+
+    //     $query="INSERT INTO result_info_student(student_id,student_session,student_semester) VALUE('$student_id','$student_session',' $student_semester')";
+
+    //        if(mysqli_query($this->conn,$query)){
+    //         header("location:addResult2.php");
+    //            return "Result Student Info added successfully!";
+              
+    //        }
+    // }
+        
+    //
+
+    // public function displayCourse_data_by_semester($Student_semester){
+    //     $query = "SELECT * from courses where course_semester='$Student_semester' ";
+    //     if(mysqli_query($this->conn,$query)){
+    //         $return_data2=mysqli_query($this->conn,$query);
+    //         return $return_data2;
+    //         // $studentData2=mysqli_fetch_assoc($return_data2);
+    //         // return $studentData2;
+    //     }
+    // }
+
+    public function displayCourseDataBYSemester($data1){
+        $query="SELECT * FROM courses where course_semester=$data1";
+        if(mysqli_query($this->conn,$query)){
+            $displayCourse_data=mysqli_query($this->conn,$query);
+            return $displayCourse_data;
+        }
+    }
     }
        ?>

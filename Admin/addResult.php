@@ -36,9 +36,29 @@
                
         }
     }
-            
-        
 
+    if(isset($_POST["enter_next"])){
+         $student_id=$_POST["Student_id"];
+         $student_session=$_POST["Student_session"];
+         $student_semester=$_POST["Student_semester"];
+         $student_department=$_POST["Student_dept"];
+
+    }
+    // $resultInfoStudent= new deptProject;
+    // if(isset($_POST["enter"])){
+    //     $resultInfoStudent->add_result_StdInfo($_POST);
+    //         if($resultInfoStudent){
+    //          echo '<script type ="text/JavaScript">';  
+    //          echo "alert('Info Added Succesfully')";  
+    //          echo '</script>'; 
+    //         }
+     
+    //         else{
+    //          echo '<script type ="text/JavaScript">';  
+    //          echo "alert('Info Donot Added Succesfully')";  
+    //          echo '</script>'; 
+    //         }
+    //          }
              ?>
 <!doctype html>
 <html lang="en">
@@ -100,38 +120,42 @@
 
             <br>
             <div>
-                <h1 style="text-align:center">Search Your Result!</h1>
+                <h1 style="text-align:center">ADD Result!</h1>
             </div>
 
             <div class="row" style="margin: 0px 20px 5px 20px">
                 <div class="col-sm-6 container mt-3 mb-3">
                     <div class="card ">
                         <div class="card-body">
-                            <form class="form" method="POST" action="">
+                            <form class="form" method="POST" action="addResult2.php">
+                            <label for="exampleInputEmail1">Student Department:</label>
+                                <input name="Student_dept" id="student_id" class="form-control mt-3" type="search" value="<?php if(isset($data)){echo   $stdDeptName;}?>"
+                                    >
+                                    <br>
                                 <label for="exampleInputEmail1">Student ID:</label>
-                                <input class="form-control mt-3" type="search" value="<?php if(isset($data)){echo   $stdRegNumber;}?>"
-                                    name="id_no">
+                                <input name="Student_id" id="student_id" class="form-control mt-3" type="search" value="<?php if(isset($data)){echo   $stdRegNumber;}?>"
+                                   >
                                 <small id="emailHelp" class="form-text text-muted">Every student's should have unique Id
                                     no.</small>
                                 <br>
                                 <!-- Session -->
                                 <label class="mt-3" for="exampleInputEmail1">Session:</label>
-                               <input class="form-control mt-3" type="search"  value="<?php if(isset($data)){echo  $stdSession;}?>"
-                                    name="session_no">
+                               <input name="Student_session" id="student_session" class="form-control mt-3" type="search"  value="<?php if(isset($data)){echo  $stdSession;}?>"
+                                   >
                                
 
                                 <!-- Semester -->
                                 <label class="mt-3" for="exampleInputEmail1">Semester:</label>
-                                <select class="form-select mt-3" aria-label="Default select example">
+                                <select name="Student_semester"  id="student_semester" class="form-select mt-3" aria-label="Default select example" >
                                     <option selected>Choose Your Semester</option>
-                                    <option value="1">1st</option>
+                                    <option  value="1">1st</option>
                                     <option value="2">2nd</option>
                                     <option value="3">3rd</option>
                                 </select>
                                 
                                 <br>
-                                <button class="btn btn-outline-primary mt-3 " type="submit"
-                                    name="search">Generate</button>
+                          <button   class="btn btn-outline-primary mt-3 "   type="submit"
+                                    name="enter_next">Next</button>
                             </form>
                         </div>
                     </div>

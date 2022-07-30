@@ -122,9 +122,10 @@ $addCourseInfo=new deptProject;
                                 <select name="Course_semester" class="form-select mt-3"
                                     aria-label="Default select example">
                                     <option selected>Choose Semester</option>
-                                    <option value="1st">1st</option>
-                                    <option value="2nd">2nd</option>
-                                    <option value="3rd">3rd</option>
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <!-- <option value="4th">4th</option> -->
                                 </select>
                                 <br>
                                 <!-- Department -->
