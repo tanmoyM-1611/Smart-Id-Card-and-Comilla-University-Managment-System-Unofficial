@@ -85,6 +85,9 @@ include("../functionAdmin.php")  ;
         <a href="formfill.php">
                 <h3>Form Fillup</h3>
             </a>
+            <a href="result.php">
+                <h3>Result</h3>
+            </a>
         <a href="about.php">
             <h3>About</h3>
         </a>

@@ -74,17 +74,9 @@ if(isset($_POST["edit_info"])){
 <body>
     <section>
         <div class="sidenav">
-        <a href="homeAdmin.php">
-            <h3>Home</h3>
-        </a>
-       
-        <a href="about.php">
-            <h3>About</h3>
-        </a>
-       
-  <a href="contact.php">
-                <h3>Contact</h3>
-            </a>
+        <a href="homeAdmin.php">Home</a>
+            <a href="resultAdmin.php">Result</a>
+            <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
 
             <div style="padding-top:420px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>

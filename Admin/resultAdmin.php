@@ -11,13 +11,13 @@
    $stdData= $projectAdmin->displayData();
 
   //  delete data
-  if(isset($_GET['status'])){
-    if($_GET['status']='delete'){
-        $delete_id=$_GET['id'];
-  $delMsg= $projectAdmin->delete_data_by_id($delete_id);
-    }
+//   if(isset($_GET['status'])){
+//     if($_GET['status']='delete'){
+//         $delete_id=$_GET['id'];
+//   $delMsg= $projectAdmin->delete_data_by_id($delete_id);
+//     }
     
-  }
+//   }
 
   
 
@@ -32,7 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Result - SB Admin</title>
     <link href="../Admin//style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -54,11 +54,10 @@
     <section>
         <div class="sidenav">
 
-            <a href="homeAdmin.php">Home</a>
-            <a href="courses.php">Courses</a>
+        <a href="homeAdmin.php">Home</a>
+        <a href="courses.php">Courses</a>
             <a href="resultAdmin.php">Result</a>
             <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
-            
 
             <div style="padding-top:420px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
@@ -89,7 +88,7 @@
             </nav>
 
             <div class="container">
-                <h1 class="mt-4">Dashboard</h1>
+                <h1 class="mt-4">Result</h1>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
@@ -113,7 +112,10 @@
 
                                 <tbody>
                                     <?php while($student=mysqli_fetch_assoc($stdData)) { ?>
+
+                                      <?php if  ($student["stdStatus"]==1){?>
                                     <tr>
+                                     
                                         <td><?php  echo $student["stdRegNumber"];?></td>
                                         <td><?php echo $student["stdName"];?></td>
                                         <td><?php echo $student["stdDeptName"];?></td>
@@ -123,20 +125,15 @@
 
                                         <td><?php echo $student["stdStatus"];?></td>
                                         <td>
-
+                                        <a class="btn btn-success mt-2"
+                                                href="addResult.php?status=addResult&&id=<?php echo $student["id"];?>">ADD RESULT</a>
                                             <a class="btn btn-success mt-2"
-                                                href="edit.php?status=edit&&id=<?php echo $student["id"];?>">Edit</a>
-                                            <a class="btn btn-danger mt-2"
-                                                href="?status=delete&&id=<?php echo $student["id"];?>"> Delete</a>
+                                                href="edit.php?status=edit&&id=<?php echo $student["id"];?>">EDIT RESULT</a>
+                                           
 
-                                            <?php   if(($student["stdStatus"])==0)  { echo    
-                                           "<a id='ver' class='btn btn-warning  mt-2'
-                                                href='verified.php?status=verified&&id=$student[id]'>Verified</a>";
-                                                }
-                                               
-                                                ?>
                                         </td>
                                     </tr>
+                                      <?php }?>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>

@@ -190,7 +190,7 @@
         $idno=$data['std_id'];
         
         $tmp_name=$_FILES["ustd_img"]["tmp_name"];
-
+         if(!empty($update_std_img)){
         $query="UPDATE student_info SET 
          stdDeptName='$ustdDeptName',
          stdHallName='$ustdHallName',
@@ -216,6 +216,30 @@
              return "info update successfully";
            
 }
+         }
+         else{
+            $query="UPDATE student_info SET 
+         stdDeptName='$ustdDeptName',
+         stdHallName='$ustdHallName',
+         stdName='$ustdName',
+         stdFatherName='$ustdFatherName',
+         stdMotherName='$ustdMotherName',
+         stdRegNumber='$ustdRegNumber',
+         stdSession='$ustdSession',
+         stdDOB='$ustdDOB',
+         stdAge='$ustdAge',
+         stdPhnNumber='$ustdPhnNumber',
+         stdReligion='$ustdReligion',
+         stdNationality='$ustdNationality',
+         stdPresentAddress='$ustdPresentAddress',
+         stdParmanentAddress='$ustdParmanentAddress' WHERE id=$idno";
+          if(mysqli_query($this->conn,$query)){
+          
+            header("location:homeAdmin.php");
+            return "info update successfully";
+          
+}
+        }
     }
 
     //verified
@@ -232,6 +256,25 @@
                 header("location:homeAdmin.php");
            return "verified successfully";
 }
+    }
+
+    // Add Course
+    public function add_CourseInfo($data){
+        $course_session=$data["Course_session"];
+        $course_semester=$data["Course_semester"];
+        $course_department=$data["Course_department"];
+       
+        $course_name=$data["Course_name"];
+        $course_code=$data["Course_code"];
+        $course_credit=$data["Course_credit"];
+
+        $query="INSERT INTO courses(course_session,course_semester,course_department,course_name,course_code,course_credit) VALUE('$course_session','  $course_semester',' $course_department',' $course_name','$course_code',' $course_credit')";
+
+           if(mysqli_query($this->conn,$query)){
+             
+               return "Course added successfully!";
+  
+           }
     }
 
     }
