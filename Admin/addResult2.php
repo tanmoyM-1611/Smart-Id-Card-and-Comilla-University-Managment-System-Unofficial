@@ -1,4 +1,5 @@
 <?php
+
    include("../functionAdmin.php")  ; 
    
    session_start();
@@ -7,10 +8,29 @@
     header("location:login.php");
    }
   
-
-  
+   $addResult=new deptProject;
+if(isset($_POST["add_result"])){
+    $resultInfo= $addResult->add_Result($_POST);
+        if($resultInfo){
+         echo '<script type ="text/JavaScript">';  
+         echo "alert('result Added Succesfully')";  
+         echo '</script>'; 
+        }
+ 
+        else{
+         echo '<script type ="text/JavaScript">';  
+         echo "alert('result Don't Added Succesfully')";  
+         echo '</script>'; 
+        }
+       
+           
+   
+       
+         }
+   
+        
    $projectAdmin=new deptProject;
-   $courseData= $projectAdmin->displayCourseDataBYSemester($_POST["Student_semester"]);
+   $courseData= $projectAdmin->displayCourseDataBYSemester($_POST["Student_session"],$_POST["Student_semester"],$_POST["Student_dept"]);
   //  delete data
 //   if(isset($_GET['status'])){
 //     if($_GET['status']='delete'){
@@ -20,10 +40,13 @@
     
 //   }
 
-$student_id=$_POST["Student_id"];
-$student_session=$_POST["Student_session"];
-$student_semester=$_POST["Student_semester"];
+          
+         $student_id=$_POST["Student_id"];
+  $student_session=$_POST["Student_session"];
+  $student_semester=$_POST["Student_semester"];
+  $student_dept=$_POST["Student_dept"];
 
+         
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +91,7 @@ $student_semester=$_POST["Student_semester"];
             </div>
         </div>
 
-        <div  class="main">
+        <div class="main">
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Comilla University</a>
@@ -92,69 +115,102 @@ $student_semester=$_POST["Student_semester"];
             </nav>
 
             <div class="container-fluid ">
-                <div class="mt-4 card col-sm-4 container mt-3 mb-3 border-5 rounded-3" style="text-align:center;background-color:#f9f3db">
-                <div class="card-body ">
-                    <h3 style="font-family:italic"><b style="font-family:Delius">Student ID :</b> <?php echo $_POST["Student_id"];?></h3>
-                    <h5 style="font-family:Delius">Department : <?php echo $_POST["Student_dept"];?></h4>
-                    <h5 style="font-family:Delius">Student Session : <?php echo $_POST["Student_session"];?></h5>
-                    <h5 style="font-family:Delius">Semester No : <?php echo $_POST["Student_semester"];?></h5>
+
+                <div class="mt-4 card col-sm-4 container mt-3 mb-3 border-5 rounded-3"
+                    style="text-align:center;background-color:#f9f3db">
+                    <div class="card-body ">
+                        <h3 style="font-family:italic"><b style="font-family:Delius">Student ID :</b>
+
+                            <?php echo $_POST["Student_id"];?></h3>
+                        <h4 style="font-family:Delius">Department :
+                            <?php echo $_POST["Student_dept"];?></h4>
+                        <h5 style="font-family:Delius">Student Session :
+                            <?php echo $_POST["Student_session"];?></h5>
+                        <h5 style="font-family:Delius">Semester No :
+                            <?php echo $_POST["Student_semester"];?></h5>
+                    </div>
+
                 </div>
-                    
-                </div>
+                <form method="POST" action="">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Course Name</th>
+                                        <th>Course Credit</th>
+                                        <th>Before Final Mark</th>
+                                        <th>Semester Final Mark</th>
+                                        <th>Total Mark</th>
+                                        <th>CGPA</th>
+                                        <th>Grade</th>
+                                        <th>Action</th>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
+                                    </tr>
+                                </thead>
 
-                                    <th>Course Name</th>
-                                    <th>Course Credit</th>
-                                    <th>Before Final Mark</th>
-                                    <th>Semester Final Mark</th>
-                                    <th>Total Mark</th>
-                                    <th>CGPA</th>
-                                    <th>Grade</th>
+                                <tbody>
 
-                                </tr>
-                            </thead>
+                                    <?php while($course_Data=mysqli_fetch_assoc($courseData)) { ?>
 
-                            <tbody>
-                                <?php while($course_Data=mysqli_fetch_assoc($courseData)) { ?>
-                                
-                                <tr>
-                                    <form method="POST" action="">
-                                        <td> <?php  echo $course_Data["course_name"];?>
+                                    <tr>
+                                        
+                                         <input  name="rstdREG" type="hidden"
+                                                value="<?php  echo $_POST["Student_id"];?>">
+                                         <input name="rstdDEPT" type="hidden"
+                                                value="<?php  echo $_POST["Student_dept"];?>"> 
+                                        <input name="rstdSESSION" type="hidden"
+                                                value="<?php  echo $_POST["Student_session"];?>">
+                                         <input name="rstdSEMESTER" type="hidden"
+                                                value="<?php  echo $_POST["Student_semester"];?>">
+
+                                        <td><input name="stdCourseName" type="text"
+                                                value="<?php  echo $course_Data["course_name"];?>">
 
                                         </td>
-                                        <td></td>
-                                        <td><input type="text" name="job_num"></td>
-                                        <td><input type="text" name="job_num"></td>
-                                        <td><input type="text" name="job_num"></td>
-                                        <td><input type="text" name="job_num"></td>
-                                        <td><input type="text" name="job_num"></td>
-                                    </form>
-                                </tr>
-                                
+                                        <td><input name="stdCourseCredit" type="text"
+                                                value="<?php  echo $course_Data["course_credit"];?>"></td>
+                                        <td><input type="number" name="stdBeforeFinal"></td>
+                                        <td><input type="number" name="stdSemesterFinal"></td>
+                                        <td><input type="number" name="stdTmSubject"></td>
+                                        <td><input type="number" name="stdCgSubject" step="0.01"></td>
+                                        <td><input type="text" name="stdGrSubject"></td>
+                                        <td><button name="add_result" class="btn btn-outline-primary " type="submit">Submit</button></td>
+                                    </tr>
 
-                               
 
-                                <?php } ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Course Name</th>
-                                    <th>Course Credit</th>
-                                    <th>Before Final Mark</th>
-                                    <th>Semester Final Mark</th>
-                                    <th>Total Mark</th>
-                                    <th>CGPA</th>
-                                    <th>Grade</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+
+
+
+                                    <?php } ?>
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                       
+                                        <th>Course Name</th>
+                                        <th>Course Credit</th>
+                                        <th>Before Final Mark</th>
+                                        <th>Semester Final Mark</th>
+                                        <th>Total Mark</th>
+                                        <th>CGPA</th>
+                                        <th>Grade</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                    
+
+                </form>
+                <!-- submit result -->
+
+
+
+
+
 
             </div>
         </div>
@@ -167,6 +223,7 @@ $student_semester=$_POST["Student_semester"];
         $('#table_data').DataTable();
     });
     </script>
+    
 </body>
 
 </html>

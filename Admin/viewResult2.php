@@ -6,9 +6,16 @@
    if($id==null){
     header("location:login.php");
    }
-
-   $projectAdmin=new deptProject;
-   $stdData= $projectAdmin->displayData();
+  
+   $viewResult_Id=new deptProject;
+   $viewTotalCredit_Id=new deptProject;
+   
+   
+       
+      $data1= $viewResult_Id->display_result_data_by_id_fromAdmin($_POST["Student_id"],$_POST["Student_semester"]);
+      $data2= $viewTotalCredit_Id->display_totalCredit($_POST["Student_id"],$_POST["Student_semester"]);
+      $stdTotal_credit=$data2["std_totalCredit"];
+  
 
   //  delete data
 //   if(isset($_GET['status'])){
@@ -19,8 +26,12 @@
     
 //   }
 
-  
 
+$student_id=$_POST["Student_id"];
+$student_session=$_POST["Student_session"];
+$student_semester=$_POST["Student_semester"];
+$student_dept=$_POST["Student_dept"];   
+         
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +53,10 @@
     </script>
 
     <script src="https://kit.fontawesome.com/5a1010e0a8.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Delius' rel='stylesheet'>
 
 </head>
 
@@ -54,8 +66,8 @@
     <section>
         <div class="sidenav">
 
-        <a href="homeAdmin.php">Home</a>
-        <a href="courses.php">Courses</a>
+            <a href="homeAdmin.php">Home</a>
+            <a href="courses.php">Courses</a>
             <a href="resultAdmin.php">Result</a>
             <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
 
@@ -76,106 +88,90 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-
                         </ul>
-
-                        <!-- <form class="d-flex">
-                            <input class="form-control me-2" type="text" id="mySearch" onkeyup="searchStudent()" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form> -->
                     </div>
                 </div>
             </nav>
 
-            <div class="container">
-                <h1 class="mt-4">Result</h1>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>
-                        Students Info
-                    </div>
+            <div class="container-fluid ">
+               
+                   
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Registration Number</th>
-                                        <th>Name</th>
-                                        <th>Department</th>
-                                        <th>Session</th>
-                                        <th>Image</th>
-                                        <th>Status</th>
+                                        <th>Semester No</th>
+                                        <th>Total Credit</th>
+                                        <th>CGPA</th>
                                         <th>Action</th>
+                                        
 
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <?php while($student=mysqli_fetch_assoc($stdData)) { ?>
-
-                                      <?php if  ($student["stdStatus"]==1){?>
+                                <?php while($studentResult=mysqli_fetch_assoc($data1)) { 
+                                   
+                                    ?>
+                                  
                                     <tr>
-                                     
-                                        <td><?php  echo $student["stdRegNumber"];?></td>
-                                        <td><?php echo $student["stdName"];?></td>
-                                        <td><?php echo $student["stdDeptName"];?></td>
-                                        <td><?php echo $student["stdSession"];?></td>
-                                        <td><img style="height:50px"
-                                                src="../User//upload/<?php echo $student["std_img"];?>" alt=""></td>
-                                        
-                                        <td><?php echo $student["stdStatus"];?></td>
-                                        <td>
-                                        <a class="btn btn-success mt-2"
-                                                href="addResult.php?status=addResult&&id=<?php echo $student["id"];?>">ADD RESULT</a>
-                                            <a class="btn btn-success mt-2"
-                                                href="viewResult1.php?status=viewResult&&id=<?php echo $student["id"];?>">VIEW</a>
-                                           
-
+                                      
+                                    <td><?php  echo $studentResult["student_semester"];?></td>
+                                        <td><?php
+                                          echo $stdTotal_credit;
+    
+                                         ?>
                                         </td>
+                                        <td></td>
+                                        <td></td>
+
                                     </tr>
-                                      <?php }?>
-                                    <?php } ?>
+
+
+
+
+                                 <?php }  ?>
                                 </tbody>
                                 <tfoot>
-            <tr>
-                                        <th>Registration Number</th>
-                                        <th>Name</th>
-                                        <th>Department</th>
-                                        <th>Session</th>
-                                        <th>Image</th>
-                                        <th>Status</th>
+                                    <tr>
+                                         <th>Semester No</th>
+                                        <th>Total Credit</th>
+                                        <th>CGPA</th>
                                         <th>Action</th>
-            </tr>
-        </tfoot>
+                                    </tr>
+                                </tfoot>
                             </table>
+
+                            
                         </div>
+
+                      <!-- table2 -->
+                      
+
+
                     </div>
-
-                </div>
-
-
-                <footer class=" ">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                            <!-- submit result -->
+                            <div style="text-align:center">
+                                <!-- <button name="add_result" class="btn btn-outline-primary mt-3 " type="submit">Submit
+                                    Result</button> -->
                             </div>
-                        </div>
-                    </div>
-                </footer>
+
+                
             </div>
+        </div>
+
+        </div>
         </div>
     </section>
     <!-- <script src="../Admin//js/scripts.js"></script> -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        $(document).ready(function(){  
-      $('#table_data').DataTable();  
- }); 
+    $(document).ready(function() {
+        $('#table_data').DataTable();
+    });
     </script>
 </body>
 

@@ -1,4 +1,5 @@
 <?php
+
    class deptProject{
        private $conn;
 
@@ -327,11 +328,56 @@
     //     }
     // }
 
-    public function displayCourseDataBYSemester($data1){
-        $query="SELECT * FROM courses where course_semester=$data1";
+    public function displayCourseDataBYSemester($data1,$data2,$data3){
+        $query="SELECT * FROM courses where course_session='$data1' AND course_semester=$data2 AND course_department LIKE '%$data3%'" ;
         if(mysqli_query($this->conn,$query)){
             $displayCourse_data=mysqli_query($this->conn,$query);
             return $displayCourse_data;
+        }
+    }
+
+    // Add result
+    public function add_Result($data){
+        $student_id=$data["rstdREG"];
+        $student_session=$data["rstdSESSION"];
+        $student_semester=$data["rstdSEMESTER"];
+        $student_department=$data["rstdDEPT"];
+        $std_CourseName=$data["stdCourseName"];
+        $std_CourseCredit=$data["stdCourseCredit"];
+        $std_BeforeFinal=$data["stdBeforeFinal"];
+        $std_SemesterFinal=$data["stdSemesterFinal"];
+        $std_TmSubject=$data["stdTmSubject"];
+        $std_CgSubject=$data["stdCgSubject"];
+        $std_GrSubject=$data["stdGrSubject"];
+
+        $query="INSERT INTO result_info_student(student_id,student_session,student_semester,student_department,std_CourseName,std_CourseCredit,std_BeforeFinal,std_SemesterFinal,std_TmSubject,std_CgSubject,std_GrSubject) VALUES('$student_id',' $student_session','$student_semester','$student_department',' $std_CourseName',' $std_CourseCredit','$std_BeforeFinal',' $std_SemesterFinal',' $std_TmSubject',' $std_CgSubject','$std_GrSubject')";
+
+           if(mysqli_query($this->conn,$query)){
+        
+               return "Result added successfully!";
+  
+           }
+    }
+
+    // view result
+    public function display_result_data_by_id_fromAdmin($data1,$data2){
+        $query = "SELECT * from result_info_student where student_id=$data1 AND student_semester=$data2 ";
+        if(mysqli_query($this->conn,$query)){
+            $return_data2=mysqli_query($this->conn,$query);
+            return $return_data2;
+           
+        }
+    }
+
+    //sum credit
+    public function display_totalCredit($data1,$data2){
+        $query="SELECT SUM(std_CourseCredit) AS 'std_totalCredit' FROM result_info_student WHERE student_id='$data1' AND student_semester=$data2  ";
+
+        if(mysqli_query($this->conn,$query)){
+            $return_data2=mysqli_query($this->conn,$query);
+            // return $return_data;
+            $studentData2=mysqli_fetch_assoc($return_data2);
+            return $studentData2;
         }
     }
     }

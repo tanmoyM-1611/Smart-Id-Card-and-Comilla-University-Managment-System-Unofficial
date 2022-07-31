@@ -127,7 +127,7 @@
                 <div class="col-sm-6 container mt-3 mb-3">
                     <div class="card ">
                         <div class="card-body">
-                            <form class="form" method="POST" action="addResult2.php">
+                            <form class="form" method="POST" action="viewResult2.php">
                             <label for="exampleInputEmail1">Student Department:</label>
                                 <input name="Student_dept" id="student_id" class="form-control mt-3" value="<?php if(isset($data)){echo   $stdDeptName;}?>"
                                     >
