@@ -1,22 +1,18 @@
 <?php
+
    include("../functionAdmin.php")  ; 
-   
+   error_reporting(E_ERROR | E_PARSE);
    session_start();
    $id=$_SESSION['adminID'];
    if($id==null){
     header("location:login.php");
    }
   
-   $viewResult_Id=new deptProject;
-   $viewTotalCredit_Id=new deptProject;
-   
-   
-       
-      $data1= $viewResult_Id->display_result_data_by_id_fromAdmin($_POST["Student_id"],$_POST["Student_semester"]);
-      $data2= $viewTotalCredit_Id->display_totalCredit($_POST["Student_id"],$_POST["Student_semester"]);
-      $stdTotal_credit=$data2["std_totalCredit"];
-  
+   $addResult=new deptProject;
 
+   
+        
+   
   //  delete data
 //   if(isset($_GET['status'])){
 //     if($_GET['status']='delete'){
@@ -26,11 +22,22 @@
     
 //   }
 
+          
+  $student_id=$_POST["Student_id"];
+  $student_session=$_POST["Student_session"];
+  $student_semester=$_POST["Student_semester"];
+  $student_dept=$_POST["Student_dept"];
 
-$student_id=$_POST["Student_id"];
-$student_session=$_POST["Student_session"];
-$student_semester=$_POST["Student_semester"];
-$student_dept=$_POST["Student_dept"];   
+  $resultInfoStudent= new deptProject;
+   
+
+        
+         $displayresultInfoStudent= new deptProject;
+     $student_result_info=$displayresultInfoStudent->display_result_StdInfo($_POST["Student_id"],$_POST["Student_semester"]);
+        
+     $result_Data=mysqli_fetch_assoc($student_result_info)
+            
+            
          
 ?>
 
@@ -43,7 +50,7 @@ $student_dept=$_POST["Student_dept"];
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Result - SB Admin</title>
+    <title>View Result - SB Admin</title>
     <link href="../Admin//style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -71,7 +78,7 @@ $student_dept=$_POST["Student_dept"];
             <a href="resultAdmin.php">Result</a>
             <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
 
-            <div style="padding-top:420px" class="ms-4">
+            <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -88,81 +95,76 @@ $student_dept=$_POST["Student_dept"];
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+
                         </ul>
+
+                        <!-- <form class="d-flex">
+                            <input class="form-control me-2" type="text" id="mySearch" onkeyup="searchStudent()" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form> -->
                     </div>
                 </div>
             </nav>
 
             <div class="container-fluid ">
-               
-                   
 
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Semester No</th>
-                                        <th>Total Credit</th>
-                                        <th>CGPA</th>
-                                        <th>Action</th>
-                                        
+                <div class="mt-4 card col-sm-4 container mt-3 mb-3 border-5 rounded-3"
+                    style="text-align:center;background-color:#f9f3db">
+                    <div class="card-body ">
+                        <h3 style="font-family:italic"><b style="font-family:Delius">Student ID :</b>
 
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                <?php while($studentResult=mysqli_fetch_assoc($data1)) { 
-                                   
-                                    ?>
-                                  
-                                    <tr>
-                                      
-                                    <td><?php  echo $studentResult["student_semester"];?></td>
-                                        <td><?php
-                                          echo $stdTotal_credit;
-    
-                                         ?>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-
-                                    </tr>
-
-
-
-
-                                 <?php }  ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                         <th>Semester No</th>
-                                        <th>Total Credit</th>
-                                        <th>CGPA</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
-                            
-                        </div>
-
-                      <!-- table2 -->
-                      
-
-
+                            <?php echo $_POST["Student_id"];?></h3>
+                        <h4 style="font-family:Delius">Department :
+                            <?php echo $_POST["Student_dept"];?></h4>
+                        <h5 style="font-family:Delius">Student Session :
+                            <?php echo $_POST["Student_session"];?></h5>
+                        <h5 style="font-family:Delius">Semester No :
+                            <?php echo $_POST["Student_semester"]?></h5>
                     </div>
-                            <!-- submit result -->
-                            <div style="text-align:center">
-                                <!-- <button name="add_result" class="btn btn-outline-primary mt-3 " type="submit">Submit
-                                    Result</button> -->
-                            </div>
 
-                
+                </div>
+               
+                <!-- submit result -->
+
+                <div class="row" style="margin: 0px 20px 5px 20px">
+                <div class="col-sm-6 container mt-3 mb-3">
+                    <div class="card border-5 rounded-3">
+                        <div  style="background-color:#89C499" class="card-body">
+                            
+                            <form class="form" method="POST" action="">
+                            
+                                <!-- Mark -->  
+                                <?php   if(($result_Data["result_status"])==0)  {
+                                echo
+                                '<h1 style="text-align:center">No Result Found</h1>';
+                                }
+                                
+                                else   
+                                {
+                                 echo '<h1 style="text-align:center"> CGPA : ';
+                                 echo $result_Data["student_cgpa"];
+                                 echo '</h1>';
+                            
+                                    echo
+                                    "<h4 style='text-align:center'>To edit the result,please go to <a href='resultAdmin.php'> Result Page<?a> </h4>";
+
+                                }?>
+                                   
+
+                                    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-        </div>
 
-        </div>
+
+
+
+
+            </div>
         </div>
     </section>
     <!-- <script src="../Admin//js/scripts.js"></script> -->
@@ -173,6 +175,7 @@ $student_dept=$_POST["Student_dept"];
         $('#table_data').DataTable();
     });
     </script>
+    
 </body>
 
 </html>

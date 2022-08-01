@@ -59,7 +59,7 @@
             <a href="resultAdmin.php">Result</a>
             <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
 
-            <div style="padding-top:420px" class="ms-4">
+            <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -103,9 +103,9 @@
                                         <th>Name</th>
                                         <th>Department</th>
                                         <th>Session</th>
-                                        <th>Image</th>
+                                        
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Action(Result)</th>
 
                                     </tr>
                                 </thead>
@@ -120,17 +120,17 @@
                                         <td><?php echo $student["stdName"];?></td>
                                         <td><?php echo $student["stdDeptName"];?></td>
                                         <td><?php echo $student["stdSession"];?></td>
-                                        <td><img style="height:50px"
-                                                src="../User//upload/<?php echo $student["std_img"];?>" alt=""></td>
+                                       
                                         
                                         <td><?php echo $student["stdStatus"];?></td>
                                         <td>
-                                        <a class="btn btn-success mt-2"
-                                                href="addResult.php?status=addResult&&id=<?php echo $student["id"];?>">ADD RESULT</a>
-                                            <a class="btn btn-success mt-2"
+                                        <a class="btn btn-success ms-3  mt-0"
+                                                href="addResult.php?status=addResult&&id=<?php echo $student["id"];?>">ADD</a>
+                                            <a class="btn btn-warning mt-0"
                                                 href="viewResult1.php?status=viewResult&&id=<?php echo $student["id"];?>">VIEW</a>
                                            
-
+                                                <a class="btn btn-danger mt-0"
+                                                href="editResult1.php?status=editResult&&id=<?php echo $student["id"];?>">EDIT</a>
                                         </td>
                                     </tr>
                                       <?php }?>
@@ -142,9 +142,9 @@
                                         <th>Name</th>
                                         <th>Department</th>
                                         <th>Session</th>
-                                        <th>Image</th>
+                                        
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Action(Result)</th>
             </tr>
         </tfoot>
                             </table>
@@ -157,7 +157,7 @@
                 <footer class=" ">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div class="text-muted">Copyright &copy; TANMOY,COU Website 2022 </div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

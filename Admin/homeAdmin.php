@@ -60,7 +60,7 @@
             <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
             
 
-            <div style="padding-top:420px" class="ms-4">
+            <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -90,12 +90,12 @@
 
             <div class="container">
                 <h1 class="mt-4">Dashboard</h1>
-                <div class="card mb-4">
-                    <div class="card-header">
+                <div class="card border-5 rounded-3 mb-4">
+                    <div class="card-header border-5 rounded-3">
                         <i class="fas fa-table mr-1"></i>
                         Students Info
                     </div>
-                    <div class="card-body">
+                    <div class="card-body ">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
                                 <thead>
@@ -124,14 +124,14 @@
                                         <td><?php echo $student["stdStatus"];?></td>
                                         <td>
 
-                                            <a class="btn btn-success mt-2"
-                                                href="edit.php?status=edit&&id=<?php echo $student["id"];?>">Edit</a>
-                                            <a class="btn btn-danger mt-2"
-                                                href="?status=delete&&id=<?php echo $student["id"];?>"> Delete</a>
+                                            <a class="btn btn-success ms-3 mt-1 mb-1"
+                                                href="edit.php?status=edit&&id=<?php echo $student["id"];?>">EDIT</a>
+                                            <a class="btn btn-danger mt-1 mb-1"
+                                                href="?status=delete&&id=<?php echo $student["id"];?>"> DELETE</a>
 
                                             <?php   if(($student["stdStatus"])==0)  { echo    
-                                           "<a id='ver' class='btn btn-warning  mt-2'
-                                                href='verified.php?status=verified&&id=$student[id]'>Verified</a>";
+                                           "<a id='ver' class='btn btn-warning m mt-1 mb-1'
+                                                href='verified.php?status=verified&&id=$student[id]'>VERIFIED</a>";
                                                 }
                                                
                                                 ?>
@@ -160,7 +160,7 @@
                 <footer class=" ">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div class="text-muted">Copyright &copy; TANMOY,COU Website 2022</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

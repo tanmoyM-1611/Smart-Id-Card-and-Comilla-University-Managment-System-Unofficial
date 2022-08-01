@@ -28,7 +28,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Id Card</title>
+    <title>Courses</title>
 
     <link href="style.css" rel="stylesheet" />
     <link href="../Admin//style.css" rel="stylesheet" />
@@ -53,19 +53,12 @@
        
         ?>
         <div class="sidenav">
-            <a href="homeAdmin.php">
-                <h3>Home</h3>
-            </a>
+        <a href="homeAdmin.php">Home</a>
+            <a href="courses.php">Courses</a>
+            <a href="resultAdmin.php">Result</a>
+            <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
 
-            <a href="courses.php">
-                <h3>Courses</h3>
-            </a>
-
-            <a href="resultAdmin.php">
-                <h3>Result</h3>
-            </a>
-
-            <div style="padding-top:250px" class="ms-3">
+            <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -81,7 +74,14 @@
             <!-- Navigation bar end  -->
 
             <br>
-            <div class="card-body">
+            <div class="container">
+            <h1 class="mt-4"></h1>
+                <div class="card border-5 rounded-3 mb-4">
+                    <div class="card-header border-5 rounded-3">
+                        <i class="fas fa-table mr-1"></i>
+                        Courses
+                    </div>
+            <div class="card-body border-5 rounded-3">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
                         <thead>
@@ -109,8 +109,8 @@
                                 <td>
 
                                    
-                                    <a class="btn btn-danger mt-2"
-                                        href="?status=deleteCourse&&id=<?php echo $course["addCourse_id"];?>"> Delete</a>
+                                    <a class="btn btn-danger "
+                                        href="?status=deleteCourse&&id=<?php echo $course["addCourse_id"];?>">DELETE</a>
 
                                  
                                 </td>
@@ -131,17 +131,18 @@
                     </table>
                 </div>
             </div>
+            </div>
             <!--Add Courses -->
 
             <div style="text-align:center">
-                <a href="addCourses.php" class="btn btn-success mt-2">Add Courses!</a>
+                <a href="addCourses.php" class="btn btn-success mt-2 mb-3">Add Courses!</a>
             </div>
 
 
 
 
         </div>
-
+        </div>
     </section>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

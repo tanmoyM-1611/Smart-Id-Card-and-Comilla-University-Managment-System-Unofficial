@@ -3,11 +3,33 @@
 
    $signUp=new deptProject;
     if(isset($_POST['user_signup'])){
-	$signUp->user_signup($_POST); 
+	$sign=$signUp->user_signup($_POST); 
+    if($sign){
+        echo '<script type ="text/JavaScript">';  
+        echo "alert('Signup Succesfully')";  
+        echo '</script>'; 
+       }
+
+       else{
+        echo '<script type ="text/JavaScript">';  
+        echo "alert('Signup Again')";  
+        echo '</script>'; 
+       }
 	}
 	$logIn=new deptProject;
 	if(isset($_POST['user_login'])){
-	$logIn->user_login($_POST);
+$log=$logIn->user_login($_POST);
+    if($log){
+        echo '<script type ="text/JavaScript">';  
+        echo "alert('Login Succesfully')";  
+        echo '</script>'; 
+       }
+
+       else{
+        echo '<script type ="text/JavaScript">';  
+        echo "alert('Check Email & Password')";  
+        echo '</script>'; 
+       }
 		  }
 		 
 
@@ -40,7 +62,7 @@
                 <input type="password" name="user_pass" placeholder="Password" required="">
 
                 <button type="submit" name="user_signup">Sign up</button>
-                <!-- <input class="buttond" type="submit" value="Sign up" name="user_signup">  -->
+                
 
             </form>
         </div>
@@ -51,7 +73,7 @@
                 <input type="email" name="user_email" placeholder="Email" required="">
                 <input type="password" name="user_pass" placeholder="Password" required="">
                 <button type="submit" name="user_login">Log in</button>
-                <!-- <input class="" type="submit" value="Log in" name="user_login"> -->
+                
             </form>
         </div>
     </div>

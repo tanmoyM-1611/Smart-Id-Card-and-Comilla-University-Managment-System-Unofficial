@@ -12,7 +12,7 @@
        $projectAdmin=new deptProject;
 
        if(isset($_GET['status'])){
-        if($_GET['status']='addResult'){
+        if($_GET['status']='editResult'){
             $id=$_GET['id'];
           $data= $projectAdmin->display_data_by_id_fromAdmin($id);
           
@@ -69,7 +69,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Add Result</title>
+    <title>Edit Result</title>
 
     <link href="style.css" rel="stylesheet" />
     <link rel="stylesheet" href="../User//style.css">
@@ -117,14 +117,14 @@
 
             <br>
             <div>
-                <h1 style="text-align:center;color:#351C75"><b>ADD RESULT!</b></h1>
+                <h1 style="text-align:center;color:#351C75">Edit Result!</h1>
             </div>
 
             <div class="row" style="margin: 0px 20px 5px 20px">
                 <div class="col-sm-6 container mt-3 mb-3">
                     <div class="card border-5 rounded-3">
                         <div class="card-body">
-                            <form class="form" method="POST" action="addResult2.php">
+                            <form class="form" method="POST" action="editResult2.php">
                             <label for="exampleInputEmail1">Student Department:</label>
                                 <input name="Student_dept" id="student_id" class="form-control mt-3" value="<?php if(isset($data)){echo   $stdDeptName;}?>"
                                     >
@@ -151,8 +151,10 @@
                                 </select>
                                 
                                 <br>
-                          <button class="btn btn-outline-primary mt-3 "   type="submit"
+                                <div style="text-align:center">
+                          <button  class="btn btn-outline-primary mt-3 "   type="submit"
                                     name="enter_next">Next</button>
+                                </div>
                             </form>
                         </div>
                     </div>

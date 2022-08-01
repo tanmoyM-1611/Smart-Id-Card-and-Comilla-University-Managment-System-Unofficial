@@ -71,17 +71,12 @@ $addCourseInfo=new deptProject;
         ?>
 
         <div class="sidenav">
-            <a href="homeAdmin.php">
-                <h3>Home</h3>
-            </a>
-
+        <a href="homeAdmin.php">Home</a>
             <a href="courses.php">Courses</a>
+            <a href="resultAdmin.php">Result</a>
+            <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
 
-            <a href="resultAdmin.php">
-                <h3>Result</h3>
-            </a>
-
-            <div style="padding-top:250px" class="ms-3">
+            <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -98,12 +93,12 @@ $addCourseInfo=new deptProject;
 
             <br>
             <div>
-                <h1 style="text-align:center">Add Courses!</h1>
+                <h1 style="text-align:center;color:#351C75"><b>ADD COURSES!</b> </h1>
             </div>
 
             <div class="row" style="margin: 0px 20px 5px 20px">
                 <div class="col-sm-6 container mt-3 mb-3">
-                    <div class="card ">
+                    <div class="card border-5 rounded-3">
                         <div class="card-body">
                             <form class="form" method="POST" enctype="multipart/form-data" action="">
 
@@ -164,9 +159,11 @@ $addCourseInfo=new deptProject;
 
                                 <br>
                                 <!-- Session -->
-
-                                <button name="add_Course" class="btn btn-outline-primary mt-3 " type="submit"
+                                <div style="text-align:center">
+                                    <button name="add_Course" class="btn btn-outline-primary mt-3 " type="submit"
                                     name="search">Submit</button>
+                                </div>
+                                
                             </form>
                         </div>
                     </div>

@@ -82,6 +82,7 @@
               session_start();
              $_SESSION['userID']=$user_login_data['id'];
              $_SESSION['user_name']=$user_login_data['username'];
+             return "log in succesfully";
             }
 
             else{
@@ -301,22 +302,49 @@
 
     // add result student info
 
-    // public function add_result_StdInfo($data){
-    //     $student_id=$data["Student_id"];
-    //     $student_session=$data["Student_session"];
-    //     $student_semester=$data["Student_semester"];
+    public function add_result_StdInfo($data){
+        $student_id=$data["Student_id"];
+        $student_dept=$data["Student_dept"];
+        $student_session=$data["Student_session"];
+        $student_semester=$data["Student_semester"];
+        $student_cgpa=$data["Student_cgpa"];
+        $result_status=$data["Student_status"];
        
 
-    //     $query="INSERT INTO result_info_student(student_id,student_session,student_semester) VALUE('$student_id','$student_session',' $student_semester')";
+        $query="INSERT INTO result_info_student(student_id,student_dept,student_session,student_semester,student_cgpa,result_status) VALUE('$student_id',' $student_dept','$student_session',' $student_semester',$student_cgpa,$result_status)";
 
-    //        if(mysqli_query($this->conn,$query)){
-    //         header("location:addResult2.php");
-    //            return "Result Student Info added successfully!";
+           if(mysqli_query($this->conn,$query)){
+            header("location:resultAdmin.php");
+               return "Result Student Info added successfully!";
               
-    //        }
-    // }
+           }
+    }
         
-    //
+    //display result student info
+    public function display_result_StdInfo($data1,$data2){
+        $query="SELECT * FROM result_info_student WHERE student_id=$data1 AND student_semester=$data2";
+        if(mysqli_query($this->conn,$query)){
+            $return_data2=mysqli_query($this->conn,$query);
+            return $return_data2;
+            
+        }
+    }
+
+    // update result
+
+    public function update_result_data($data){
+        $stdId=$data["Student_id"];
+        $uStudentcgpa=$data["u_Student_cgpa"];
+        $query="UPDATE result_info_student SET student_cgpa='$uStudentcgpa' WHERE student_id=$stdId";
+ 
+        if(mysqli_query($this->conn,$query)){
+                header("location:resultAdmin.php");
+           return "verified successfully";
+      
+}
+        
+} 
+
 
     // public function displayCourse_data_by_semester($Student_semester){
     //     $query = "SELECT * from courses where course_semester='$Student_semester' ";
@@ -328,57 +356,57 @@
     //     }
     // }
 
-    public function displayCourseDataBYSemester($data1,$data2,$data3){
-        $query="SELECT * FROM courses where course_session='$data1' AND course_semester=$data2 AND course_department LIKE '%$data3%'" ;
-        if(mysqli_query($this->conn,$query)){
-            $displayCourse_data=mysqli_query($this->conn,$query);
-            return $displayCourse_data;
-        }
-    }
+    // public function displayCourseDataBYSemester($data1,$data2,$data3){
+    //     $query="SELECT * FROM courses where course_session='$data1' AND course_semester=$data2 AND course_department LIKE '%$data3%'" ;
+    //     if(mysqli_query($this->conn,$query)){
+    //         $displayCourse_data=mysqli_query($this->conn,$query);
+    //         return $displayCourse_data;
+    //     }
+    // }
 
     // Add result
-    public function add_Result($data){
-        $student_id=$data["rstdREG"];
-        $student_session=$data["rstdSESSION"];
-        $student_semester=$data["rstdSEMESTER"];
-        $student_department=$data["rstdDEPT"];
-        $std_CourseName=$data["stdCourseName"];
-        $std_CourseCredit=$data["stdCourseCredit"];
-        $std_BeforeFinal=$data["stdBeforeFinal"];
-        $std_SemesterFinal=$data["stdSemesterFinal"];
-        $std_TmSubject=$data["stdTmSubject"];
-        $std_CgSubject=$data["stdCgSubject"];
-        $std_GrSubject=$data["stdGrSubject"];
+    // public function add_Result($data){
+    //     $student_id=$data["rstdREG"];
+    //     $student_session=$data["rstdSESSION"];
+    //     $student_semester=$data["rstdSEMESTER"];
+    //     $student_department=$data["rstdDEPT"];
+    //     $std_CourseName=$data["stdCourseName"];
+    //     $std_CourseCredit=$data["stdCourseCredit"];
+    //     $std_BeforeFinal=$data["stdBeforeFinal"];
+    //     $std_SemesterFinal=$data["stdSemesterFinal"];
+    //     $std_TmSubject=$data["stdTmSubject"];
+    //     $std_CgSubject=$data["stdCgSubject"];
+    //     $std_GrSubject=$data["stdGrSubject"];
 
-        $query="INSERT INTO result_info_student(student_id,student_session,student_semester,student_department,std_CourseName,std_CourseCredit,std_BeforeFinal,std_SemesterFinal,std_TmSubject,std_CgSubject,std_GrSubject) VALUES('$student_id',' $student_session','$student_semester','$student_department',' $std_CourseName',' $std_CourseCredit','$std_BeforeFinal',' $std_SemesterFinal',' $std_TmSubject',' $std_CgSubject','$std_GrSubject')";
+    //     $query="INSERT INTO result_info_student(student_id,student_session,student_semester,student_department,std_CourseName,std_CourseCredit,std_BeforeFinal,std_SemesterFinal,std_TmSubject,std_CgSubject,std_GrSubject) VALUE('$student_id',' $student_session','$student_semester','$student_department',' $std_CourseName',' $std_CourseCredit','$std_BeforeFinal',' $std_SemesterFinal',' $std_TmSubject',' $std_CgSubject','$std_GrSubject')";
 
-           if(mysqli_query($this->conn,$query)){
-        
-               return "Result added successfully!";
-  
-           }
-    }
+    //        if(mysqli_query($this->conn,$query)){
+    //     header("location:resultAdmin.php");
+    //            return "Result added successfully!";
+               
+    //        }
+    // }
 
     // view result
-    public function display_result_data_by_id_fromAdmin($data1,$data2){
-        $query = "SELECT * from result_info_student where student_id=$data1 AND student_semester=$data2 ";
-        if(mysqli_query($this->conn,$query)){
-            $return_data2=mysqli_query($this->conn,$query);
-            return $return_data2;
+    // public function display_result_data_by_id_fromAdmin($data1,$data2){
+    //     $query = "SELECT * from result_info_student where student_id=$data1 AND student_semester=$data2 ";
+    //     if(mysqli_query($this->conn,$query)){
+    //         $return_data2=mysqli_query($this->conn,$query);
+    //         return $return_data2;
            
-        }
-    }
+    //     }
+    // }
 
     //sum credit
-    public function display_totalCredit($data1,$data2){
-        $query="SELECT SUM(std_CourseCredit) AS 'std_totalCredit' FROM result_info_student WHERE student_id='$data1' AND student_semester=$data2  ";
+    // public function display_totalCredit($data1,$data2){
+    //     $query="SELECT SUM(std_CourseCredit) AS 'std_totalCredit' FROM result_info_student WHERE student_id='$data1' AND student_semester=$data2  ";
 
-        if(mysqli_query($this->conn,$query)){
-            $return_data2=mysqli_query($this->conn,$query);
-            // return $return_data;
-            $studentData2=mysqli_fetch_assoc($return_data2);
-            return $studentData2;
-        }
-    }
+    //     if(mysqli_query($this->conn,$query)){
+    //         $return_data2=mysqli_query($this->conn,$query);
+    //         // return $return_data;
+    //         $studentData2=mysqli_fetch_assoc($return_data2);
+    //         return $studentData2;
+    //     }
+    // }
     }
        ?>

@@ -11,7 +11,21 @@
    $addResult=new deptProject;
 
    
-        
+   $projectAdmin = new deptProject;  
+   if(isset($_POST["edit_result_info"])){
+   $update_d= $projectAdmin->update_result_data($_POST);
+   if($update_d){
+      echo '<script type ="text/JavaScript">';  
+      echo "alert('Data Update Succesfully')";  
+      echo '</script>'; 
+     }
+
+     else{
+      echo '<script type ="text/JavaScript">';  
+      echo "alert('Data Don't Updated Succesfully')";  
+      echo '</script>'; 
+     }
+      }
    
   //  delete data
 //   if(isset($_GET['status'])){
@@ -28,30 +42,16 @@
   $student_semester=$_POST["Student_semester"];
   $student_dept=$_POST["Student_dept"];
 
-  $resultInfoStudent= new deptProject;
-    if(isset($_POST["enter"])){
-        $resultInfoStudent->add_result_StdInfo($_POST);
-       
-            if($resultInfoStudent){
-             echo '<script type ="text/JavaScript">';  
-             echo "alert('Info Added Succesfully')";  
-             echo '</script>'; 
-            }
-     
-            else{
-             echo '<script type ="text/JavaScript">';  
-             echo "alert('Info Donot Added Succesfully')";  
-             echo '</script>'; 
-            }
-        }
+  
 
         
          $displayresultInfoStudent= new deptProject;
      $student_result_info=$displayresultInfoStudent->display_result_StdInfo($_POST["Student_id"],$_POST["Student_semester"]);
         
-     $result_Data=mysqli_fetch_assoc($student_result_info)
-            
-            
+     $result_Data=mysqli_fetch_assoc($student_result_info);
+
+     
+           
          
 ?>
 
@@ -64,7 +64,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Result - SB Admin</title>
+    <title>Edit Result - SB Admin</title>
     <link href="../Admin//style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -119,14 +119,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="alert alert-warning mt-2 d-flex " role="alert">
 
-<div class="me-2 icon hidden-xs">
-    <i class="fa fa-exclamation-circle"></i>
-</div>
-While submitting,Make sure to set the status value to "1" & Please Fill out CGPA field carefully."Thank You!
-
-</div>
             <div class="container-fluid ">
 
                 <div class="mt-4 card col-sm-4 container mt-3 mb-3 border-5 rounded-3"
@@ -154,53 +147,31 @@ While submitting,Make sure to set the status value to "1" & Please Fill out CGPA
                             
                             <form class="form" method="POST" action="">
                             
-                                <input type="hidden" name="Student_dept" id="student_id" class="form-control mt-3" value="<?php echo   $_POST["Student_dept"];?>"required
-                                    >
-                                <input name="Student_id" id="student_id" class="form-control mt-3" required type="hidden" value="<?php {echo  $_POST["Student_id"];}?>"
-                                   >
-                                <br>
-                                <!-- Session -->
-                               <input name="Student_session" id="student_session" class="form-control mt-3" type="hidden" required  value="<?php echo  $_POST["Student_session"];?>"
-                                   >
                                
-                                <!-- Semester -->
-                               
-                                <input type="hidden" name="Student_semester"  id="student_semester" class="form-select mt-3" aria-label="Default select example" required value="<?php echo  $_POST["Student_semester"];?>"> </input>
-                                   
+                            <input name="Student_id" id="student_id" class="form-control mt-3" required type="hidden" value="<?php {echo  $_POST["Student_id"];}?>"
+                                   >
                                
                                  <br>
                                 <!-- Mark -->  
-                                <?php   if(($result_Data["result_status"])==0)  {
-                                echo
-                               ' <label class="mt-3" for="exampleInputEmail1">CGPA:</label>
-                                <input name="Student_cgpa" id="student_mark" class="form-control mt-3" step="0.01" type="number" required >';
-                                
-                               echo '<br>' ;
                                
-                                    echo 
-                               '<label class="mt-3" for="exampleInputEmail1">Status:</label>
-                                <select name="Student_status"  id="student_status" class="form-select mt-3" aria-label="Default select example" required>
-                                    
-                                    <option  value="1">1</option>
-                                    <option value="0">0</option>
-                                   
-                                </select>';
-                                echo
-                                           
-                        '  <div style="text-align:center"> <button  class="btn btn-outline-primary mt-3"   type="submit"
-                                    name="enter">Submit Result</button></div>';
-                                }
+                                <label class="mt-3" for="exampleInputEmail1">CGPA:</label>
+                                <input name="u_Student_cgpa" id="student_mark" class="form-control mt-3" step="0.01" type="number" value="<?php  echo $result_Data['student_cgpa'];?>" >
                                 
-                                else   
-                                {
-                                 echo '<h1 style="text-align:center"> CGPA : ';
-                                 echo $result_Data["student_cgpa"];
-                                 echo '</h1>';
+                               <br> 
+                               
+                 
+                               
+                                           
+                               <div style="text-align:center">   <button  class="btn btn-outline-primary mt-3"   type="submit"
+                                    name=" edit_result_info">Update</button></div>
+                                
+                                
+                                
+                               
                             
-                                    echo
-                                    "<h4 style='text-align:center'>To edit the result,Please <a href='editResult1.php'>Click<?a>  </h4>";
-
-                                }?>
+                            
+                                  
+                               
                                    
 
                                     
