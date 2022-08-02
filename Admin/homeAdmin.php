@@ -57,7 +57,9 @@
             <a href="homeAdmin.php">Home</a>
             <a href="courses.php">Courses</a>
             <a href="resultAdmin.php">Result</a>
+            <a href="notification.php">Notification</a>
             <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
+            
             
 
             <div style="padding-top:380px" class="ms-3">

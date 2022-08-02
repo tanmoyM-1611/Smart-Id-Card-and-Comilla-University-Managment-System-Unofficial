@@ -356,13 +356,13 @@
     //     }
     // }
 
-    // public function displayCourseDataBYSemester($data1,$data2,$data3){
-    //     $query="SELECT * FROM courses where course_session='$data1' AND course_semester=$data2 AND course_department LIKE '%$data3%'" ;
-    //     if(mysqli_query($this->conn,$query)){
-    //         $displayCourse_data=mysqli_query($this->conn,$query);
-    //         return $displayCourse_data;
-    //     }
-    // }
+    public function displayCourseDataBYSemester($data1,$data2,$data3){
+        $query="SELECT * FROM courses where course_session='$data1' AND course_semester=$data2 AND course_department LIKE '%$data3%'" ;
+        if(mysqli_query($this->conn,$query)){
+            $displayCourse_data=mysqli_query($this->conn,$query);
+            return $displayCourse_data;
+        }
+    }
 
     // Add result
     // public function add_Result($data){
@@ -408,5 +408,30 @@
     //         return $studentData2;
     //     }
     // }
+    // Add Notification
+    public function add_notification($data){ 
+        $session=$data["session"];
+        $dept=$data["dept"];
+        $notifications=$data["notification"];
+       
+        $fileName = $_FILES["file"]["name"];
+        $fileTmpName = $_FILES["file"]["tmp_name"];
+        
+        $query = "INSERT INTO noti_fication(dept_sessions,dept,mssg,files)VALUES('$session','$dept','$notifications','$fileName')";
+       
+        if(mysqli_query($this->conn,$query)){
+            move_uploaded_file($fileTmpName,'E:\xampp\htdocs\project-5th\User\upload_file/'.$fileName);
+            return "info added successfully";
+
+        }
+    }
+    // display mssg
+    public function displayMssgData(){ 
+        $query="SELECT * FROM noti_fication";
+        if(mysqli_query($this->conn,$query)){
+            $display_data=mysqli_query($this->conn,$query);
+            return $display_data;
+        }
+    }
     }
        ?>

@@ -23,7 +23,7 @@
     </script>
 
     <script src="https://kit.fontawesome.com/5a1010e0a8.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
     @media (min-width: 450px) {
         h1.heading {
@@ -72,52 +72,47 @@
 </head>
 
 <body>
-    <div class="sidenav">
-        <a href="home.php">
-            <h3>Home</h3>
-        </a>
-        <a href="idCard.php">
-            <h3>Id Card</h3>
-        </a>
-      
-        <a href="formfill.php">
+<div class="sidenav">
+            <a href="home.php">
+                <h3>Home</h3>
+            </a>
+            <a href="idCard.php">
+                <h3>Id Card</h3>
+            </a>
+            <a href="formfill.php">
                 <h3>Form Fillup</h3>
             </a>
-            <a href="result.php">
+            <a href="viewresultUser.php">
                 <h3>Result</h3>
             </a>
-        <a href="about.php">
-            <h3>About</h3>
-        </a>
-        <!-- <a href="#">Courses</a>
-  <a href="#">Faculty</a> -->
-  <a href="contact.php">
+            <a href="about.php">
+                <h3>About</h3>
+            </a>
+            
+            <a href="contact.php">
                 <h3>Contact</h3>
             </a>
-        <div style="padding-top:250px" class="ms-4">
-            <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
+            <div style="padding-top:200px" class="ms-4">
+                <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
+            </div>
         </div>
-    </div>
-    </div>
+    
     <div class="main">
 
-        <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">CSE,Comilla University</a>
-                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-                    <!-- <div class="d-flex">
-   <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
-     </div> -->
+    <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">CSE,Comilla University</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    </div>
                 </div>
-            </div>
-        </nav>
+                <ul class="nav justify-content-end">
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="notification.php"><i style="font-size:20px" class="fa-solid fa-bell"></i></a>
+                    </li>
+
+                </ul>
+            </nav>
         <!-- card -->
 
 

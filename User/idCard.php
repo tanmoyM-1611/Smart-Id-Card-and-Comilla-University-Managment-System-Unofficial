@@ -163,7 +163,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
     body {
         font-family: 'arial';
@@ -442,7 +442,7 @@
         // }
 
         ?>
-        <div class="sidenav">
+         <div class="sidenav">
             <a href="home.php">
                 <h3>Home</h3>
             </a>
@@ -452,18 +452,17 @@
             <a href="formfill.php">
                 <h3>Form Fillup</h3>
             </a>
-            <a href="result.php">
+            <a href="viewresultUser.php">
                 <h3>Result</h3>
             </a>
             <a href="about.php">
                 <h3>About</h3>
             </a>
-            <!-- <a href="#">Courses</a>
-  <a href="#">Faculty</a> -->
-  <a href="contact.php">
+            
+            <a href="contact.php">
                 <h3>Contact</h3>
             </a>
-            <div style="padding-top:250px" class="ms-3">
+            <div style="padding-top:200px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -471,19 +470,19 @@
 
         <!-- Navigation bar start  -->
         <div class="main">
-            <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
+        <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">CSE,Comilla University</a>
-                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-                    </div> -->
+                    </div>
                 </div>
+                <ul class="nav justify-content-end">
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="notification.php"><i style="font-size:20px" class="fa-solid fa-bell"></i></a>
+                    </li>
+
+                </ul>
             </nav>
             <!-- Navigation bar end  -->
 
@@ -491,7 +490,7 @@
 
             <div class="row" style="margin: 0px 20px 5px 20px">
                 <div class="col-sm-6 conatiner mt-3 mb-3">
-                    <div class="card ">
+                    <div class="card border-5 rounded-3">
                         <div class="card-body">
                             <form class="form" method="POST" action="">
                                 <label for="exampleInputEmail1">Student ID:</label>
@@ -508,7 +507,7 @@
                 </div>
                 <div class="col-sm-6  mt-3 mb-3">
 
-                    <div class="card">
+                    <div class="card border-5 rounded-3">
                         <div class="card-header">
                             Here is your Id Card
                         </div>
@@ -554,7 +553,7 @@
                 console.log(window);
                 var opt = {
                     margin: 1,
-                    filename: 'myid.pdf',
+                    filename: 'myidCard.pdf',
                     image: {
                         type: 'jpeg',
                         quality: 0.98

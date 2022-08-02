@@ -34,13 +34,13 @@
        
             if($resultInfoStudent){
              echo '<script type ="text/JavaScript">';  
-             echo "alert('Info Added Succesfully')";  
+             echo "alert('Result Added Succesfully')";  
              echo '</script>'; 
             }
      
             else{
              echo '<script type ="text/JavaScript">';  
-             echo "alert('Info Donot Added Succesfully')";  
+             echo "alert('Result Donot Added Succesfully')";  
              echo '</script>'; 
             }
         }

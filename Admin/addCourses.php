@@ -93,7 +93,7 @@ $addCourseInfo=new deptProject;
 
             <br>
             <div>
-                <h1 style="text-align:center;color:#351C75"><b>ADD COURSES!</b> </h1>
+                <h1 style="text-align:center;color:#351C75;font-family:Delius"><b>ADD COURSES!</b> </h1>
             </div>
 
             <div class="row" style="margin: 0px 20px 5px 20px">

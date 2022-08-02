@@ -44,7 +44,7 @@
         <label for="password">Password</label>
         <input name="admin_pass" type="password" placeholder="Password" id="password">
 
-        <input class="button" type="submit" value="login" name="admin_logIn">
+        <input class="button" type="submit" value="Login" name="admin_logIn">
         <!-- <button>Log In</button> -->
        
     </form>

@@ -1,19 +1,25 @@
 <?php
   include("../functionAdmin.php")  ;
-  
+   
  session_start();
  $id=$_SESSION['userID'];
  if($id==null){
   header("location:login.php");
  }
- 
+ error_reporting(E_ERROR | E_PARSE);
   $studentInfo=new deptProject;
+  $courseInfo=new deptProject;
  
   if(isset($_POST['search'])){
-
+       
        $id_no = $_POST['id_no'];
+       $id_session=$_POST['Student_session'];
+       $id_semester=$_POST['Student_semester'];
+       $semester_year=$_POST["semester_finalDate"];
+       $id_dept=$_POST['Student_dept'];
        $data= $studentInfo->display_data_by_id_fromUser($id_no);
-
+       $data2=$courseInfo->displayCourseDataBYSemester($id_session,$id_semester,$id_dept);
+       
              if($data){    
                        
                       $stdDeptName=$data["stdDeptName"];
@@ -73,8 +79,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
     <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
-
+    <link href='https://fonts.googleapis.com/css?family=Delius' rel='stylesheet'>
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <body>
     <section>
@@ -88,18 +95,17 @@
             <a href="formfill.php">
                 <h3>Form Fillup</h3>
             </a>
-            <a href="result.php">
+            <a href="viewresultUser.php">
                 <h3>Result</h3>
             </a>
             <a href="about.php">
                 <h3>About</h3>
             </a>
-            <!-- <a href="#">Courses</a>
-  <a href="#">Faculty</a> -->
-  <a href="contact.php">
+
+            <a href="contact.php">
                 <h3>Contact</h3>
             </a>
-            <div style="padding-top:250px" class="ms-3">
+            <div style="padding-top:200px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -107,45 +113,90 @@
 
         <!-- Navigation bar start  -->
         <div class="main">
-            <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
+        <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">CSE,Comilla University</a>
-                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    </div> -->
+                    </div>
                 </div>
+                <ul class="nav justify-content-end">
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="notification.php"><i style="font-size:20px" class="fa-solid fa-bell"></i></a>
+                    </li>
+
+                </ul>
             </nav>
             <!-- Navigation bar end  -->
 
             <br>
-
+            <div>
+                <h1 style="text-align:center;color:#351C75;font-family:Delius"><b>Form Fillup!</b></h1>
+            </div>
             <div class="col-sm-6 container  mt-3 mb-3">
-                <div class="card ">
+                <div class="card border-5 rounded-3">
                     <div class="card-body">
                         <form class="form" method="POST" action="">
-                            <label for="exampleInputEmail1">Form Fill</label>
-                            <input class="form-control mt-3" type="search" placeholder="Enter Id Card No." name="id_no">
-                            <small id="emailHelp" class="form-text text-muted">Every student's should have unique Id
-                                no.</small>
+                            <label for="exampleInputEmail1">Registration Number:</label>
+                            <input class="form-control mt-3" type="search" placeholder="Enter Id Card No." name="id_no"
+                                required>
+
+                            <!--Department  -->
+                            <label class="mt-3" for="exampleInputEmail1">Session:</label>
+                            <select name="Student_dept" id="student_dept" class="form-select mt-3"
+                                aria-label="Default select example" placeholder="Choice Your Session">
+                                <option selected>Choose Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ICT">ICT</option>
+                                <option value="LAW">LAW</option>
+                            </select>
+                            <!-- Session -->
+                            <label class="mt-3" for="exampleInputEmail1">Session:</label>
+                            <select name="Student_session" id="student_session" class="form-select mt-3"
+                                aria-label="Default select example" placeholder="Choice Your Session">
+                                <option selected>Choose Your Session</option>
+                                <option value="2017-18">2017-18</option>
+                                <option value="2018-19">2018-19</option>
+                                <option value="2019-20">2019-20</option>
+                            </select>
+
+                            <!--Semester  -->
+                            <label class="mt-3" for="exampleInputEmail1">Semester:</label>
+                            <select name="Student_semester" id="student_semester" class="form-select mt-3"
+                                aria-label="Default select example">
+                                <option selected>Choose Your Semester</option>
+                                <option value="1">1st</option>
+                                <option value="2">2nd</option>
+                                <option value="3">3rd</option>
+                            </select>
+                             <!-- Semester Final Year -->
+                             <label class="mt-3" for="exampleInputEmail1">Semester:</label>
+                            <select name="semester_finalDate" id="" class="form-select mt-3"
+                                aria-label="Default select example">
+                                <option selected>Choose Your Semester Final Year</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                            </select>
                             <br>
-                            <button class="btn btn-outline-primary mt-3 " type="submit" name="search">Generate</button>
+                            <div style="text-align:center ;">
+                                <button class="btn btn-outline-primary mt-3 " type="submit"
+                                    name="search">Generate</button>
+                            </div>
+
                         </form>
                     </div>
                 </div>
             </div>
 
-            <div  class="col-sm-12 container mt-5 mb-3">
-                <div  id="form-body" class="container card card-body mt-5 mb-3" id="collapseExample">
+            <div class="col-sm-12 container mt-5 mb-3">
+                <header id="form-body1" class="container card card-body mt-5 mb-3 border-3 " >
 
                     <div class="row " style=" ">
                         <div class="col-sm-5  mb-3">
                             <p>Attach Your Picture:</p>
-                            <img style="width:110px;height:100px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>"
-                                alt="" srcset="">
+                            <img style="width:110px;height:100px"
+                                src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>" alt="" srcset="">
                         </div>
 
                         <div class="col-sm-4  mb-3">
@@ -171,15 +222,14 @@
                         <h3> <b> Exam Controller,</b></h3>
                         <h4>Comilla University</h4>
                         <br>
-                        <p>I am applying for permission to participate in the <select id="" name="semesterNumber">
-                                <option value="1">1st</option>
-                                <option value="2">2nd</option>
-                                <option value="3">3rd</option>
-                                <option value="4">4th</option>
-                            </select> semester final examination of CSE department of
-                            <?php if(isset($data)){ echo $stdSession;} else{echo "[please enter id on borad!]";}?>
-                            academic year. If any information in this application is false then my application will be
-                            rejected..</p>
+                        <p>I Am Applying For Permission To Participate In The "Semester No -
+                            <?php if(isset($_POST['Student_semester'])){ echo $_POST['Student_semester'];} else{echo "[please enter id on borad!]";}?>"
+                            Final Examination Of
+                            "<?php if(isset($data)){ echo $stdDeptName;} else{echo "[please enter id on borad!]";}?>"
+                            Department Of
+                            "<?php if(isset($data)){ echo $stdSession;} else{echo "[please enter id on borad!]";}?>"
+                            Academic Year. If Any Information In This Application Is False Then My Application Will Be
+                            Rejected..</p>
                     </div>
 
                     <div class="card card-body">
@@ -236,10 +286,9 @@
                             <!-- DOB -->
                             <div class="col-md-6">
                                 <label class="form-label" for="birthday">Date Of Birth:</label>
-                                <br>
                                 <input class="form-control" id="today" type="date" name="stdDOB"
                                     value="<?php if(isset($data)){ echo $stdDOB;}?>">
-                                <br>
+
                             </div>
 
                             <!-- Age -->
@@ -255,7 +304,7 @@
                                 <input type="text" name="stdReligion" class="form-control" id="inputReligion"
                                     value="<?php if(isset($data)){ echo $stdReligion;}?>">
                             </div>
-                                
+
                             <!-- Nationality -->
                             <div class="col-md-6">
                                 <label for="inputNationality" class="form-label">Nationality</label>
@@ -291,9 +340,13 @@
                                 <input type="number" name="stdAmount" class="form-control" id="bankAmount">
                             </div>
 
-                            <div class="col-12">
-                                <!-- <button type="submit" name="add_info" class="btn btn-primary">Save</button> -->
+                            <!-- <div class="col-12">
+                                <button type="submit" name="add_info" class="btn btn-primary">Save</button>
 
+                            </div> -->
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Semester Final Year:</label>
+                                <input type="text" class="form-control" name="stdSemYear" id="" value=" <?php if(isset($_POST["semester_finalDate"])){echo  $_POST["semester_finalDate"];}?>">
                             </div>
 
                             <!-- for me -->
@@ -306,110 +359,68 @@
                                             cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Course Code</th>
                                                     <th>Course Title</th>
-                                                    <th>Credit</th>
+                                                    <th>Course Code</th>
+                                                    <th>Course Credit</th>
 
 
                                                 </tr>
                                             </thead>
 
                                             <tbody>
+                                                <?php if($data2) {?>
+                                                <?php while($course_data=mysqli_fetch_assoc($data2)) { ?>
 
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-
-
-
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td><?php  echo $course_data["course_name"];?></td>
+                                                    <td><?php  echo $course_data["course_code"];?></td>
+                                                    <td><?php  echo $course_data["course_credit"];?></td>
 
                                                 </tr>
 
+                                                <?php } ?>
+
+
+
+                                                <?php } ?>
+                                                <?php   if(empty($data2) ) { echo    
+                                           "<div style='text-align:center'><h4>Please Enter Your Roll, Session & Semester For Fill Courses Info Table</h4></div>";
+                                                }
+                                               
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- <h4>Select Your Courses</h4> -->
-                                <!-- <div  class="col-12">
-  <select  data-placeholder="Select Your Courses" multiple class="chosen-select" name="test" >
-      <div id="example">
-           <option value=""></option>
-    <option>CSE1101-Computer Science and Structured Programming</option>
-    <option>CSE 1102-Computer System and Structured Programming Lab</option>
-    <option>CSE 1103</option>
-    <option>CSE 1104</option>
-    <option>CSE 1105</option>
-    <option>CSE 1106</option>
-    <option>CSE 1107</option>
-    <option>CSE 1108</option>
-    
-    <option>CSE 2101</option>
-    <option>CSE 2101</option>
-    <option>CSE 2101</option>
-    <option>CSE 2101</option>
-    <option>CSE 2101</option>
-    <option>CSE 2101</option>
-    <option>CSE 2101</option>
-    <option>CSE 2101</option>
-
-    <option>CSE 3101</option>
-    <option>CSE 3101</option>
-    <option>CSE 3101</option>
-    <option>CSE 3101</option>
-    <option>CSE 3101</option>
-    <option>CSE 3101</option>
-    <option>CSE 3101</option>
-    <option>CSE 3101</option>
-      </div>
-   
-  </select>
-         </div> -->
-
-                                <div class="col-12 mt-2">
-                                    <input id="course-submit" type="submit">
-                                </div>
                         </form>
                     </div>
 
-                </div>
-                <div style="margin-top:180px" class="ms-auto d-flex ">
-                    <div class="me-4">
-                        <p></p>
-                        <h2 style='font-size:12px;'>Your Signature</h2>
-                    </div>
-                    <div>
-                        <p></p>
-                        <h2 style='font-size:12px;'>Chairman Signature</h2>
-                    </div>
-
-                </div>
-
-                <div class="row  " style="border:dotted;margin-top:100px">
 
 
+                    <div style="margin-top:130px" class="ms-auto d-flex ">
+                        <div class="me-4">
+                            <p></p>
+                            <h2 style='font-size:12px;'>Your Signature</h2>
+                        </div>
+                        <div>
+                            <p></p>
+                            <h2 style='font-size:12px;'>Chairman Signature</h2>
+                        </div>
+                                            </div>
+                                            </header>
+                                           <div style="text-align:center">   <button id="download" class="downloadtable btn btn-primary mt-2"> Download Form</button></div>
+                <!-- main -->
+                <div id="admit-body" class="row " style="border:dotted;margin-top:50px">
 
+                   
+                
+                  
                     <div class="col-sm-5   mt-3 mb-3">
                         <p>Attach Your Picture:</p>
-                        <img style="width:82px;height:87px" src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>" alt=""
-                            srcset="">
+                        <img style="width:82px;height:87px"
+                            src="../User//upload/<?php if(isset($data)){echo $std_img; } ?>" alt="" srcset="">
                     </div>
 
                     <div class="col-sm-4  mt-3 mb-3">
@@ -421,20 +432,19 @@
                     </div>
 
                     <!-- admit -->
-                    <div class="card card-body">
-                        <h3 class="mb-3"><b>Final examination-20____</b> </h3>
+                    <div class="card card-body m-2">
+
                         <form onsubmit="return false" method="POST" enctype="multipart/form-data" class="row g-3">
 
-
-
-                            <div class="col-md-6">
-                                <label for="" class="form-label">Semester No:</label>
-                                <input type="number" class="form-control" name="stdSemNO" id="">
+                            <div class="col-md-12">
+                                <label for="" class="form-label"><b>Semester Final Year:</b> </label>
+                                <input  class="form-control" name="stdSemYear" id="" value=" <?php if(isset($_POST["semester_finalDate"])){echo  $_POST["semester_finalDate"];}?>">
                             </div>
 
                             <div class="col-md-6">
-                                <label for="" class="form-label">Semester Final Year:</label>
-                                <input type="number" class="form-control" name="stdSemYear" id="inputDeptName">
+                                <label for="" class="form-label">Semester No:</label>
+                                <input type="number" class="form-control" name="stdSemNO" id=""
+                                    value="<?php if(isset($_POST['Student_semester'])){ echo $_POST['Student_semester'];} else{echo "[please enter semester on borad!]";}?>">
                             </div>
 
                             <div class="col-md-6">
@@ -450,7 +460,7 @@
                             </div>
 
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="inputName" class="form-label">Name</label>
                                 <input type="text" name="stdName" class="form-control" id="inputName"
                                     value="<?php if(isset($data)){echo $stdName;}?>" placeholder="">
@@ -469,7 +479,7 @@
                                 <label for="inputSession" class="form-label">Session</label>
                                 <input type="text" name="stdSession" class="form-control"
                                     value="<?php if(isset($data)){ echo $stdSession;}?>" id="inputSession"
-                                    placeholder="2017-18">
+                                    placeholder="">
                             </div>
 
                             <div class="col-md-12">
@@ -481,7 +491,7 @@
                         </form>
                     </div>
 
-                    <div style="margin-top:10px" class="ms-auto d-flex ">
+                    <div style="margin-top:10px" class="ms-auto d-flex mt-4">
                         <div class="me-4">
                             <p></p>
                             <h2 style='font-size:12px;'>Your Signature</h2>
@@ -492,35 +502,41 @@
                         </div>
 
                     </div>
-
+                
                 </div>
-
-                <button id="download" class="downloadtable btn btn-primary mt-2"> Download Admit Card</button>
+                <div style="text-align:center"> <button  href="javascript:void(0)" id="download2" class="downloadtable btn btn-primary mt-2 btn-download"> Download Admit Card</button>
+</div>
+               
+                </div>
+               
 
                 <!-- end -->
             </div>
+              
+        
 
-        </div>
 
-        </div>
-        </div>
+
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
     </script>
     <script src="../User//multiselect-dropdown.js"></script>
+    <script src="js/jspdf.debug.js"></script>
+<script src="js/html2canvas.min.js"></script>
+<script src="js/html2pdf.min.js"></script>
     <script>
     window.onload = function() {
         document.getElementById("download")
             .addEventListener("click", () => {
 
-                const formBody = this.document.getElementById("form-body");
+                const formBody = this.document.getElementById("form-body1");
 
                 // console.log(idBody);
                 // console.log(window);
                 var opt = {
                     margin: 1,
-                    filename: 'myid.pdf',
+                    filename: 'myForm.pdf',
                     image: {
                         type: 'jpeg',
                         quality: 0.98
@@ -545,6 +561,31 @@
     $(".chosen-select").chosen({
         no_results_text: "Oops, nothing found!"
     })
+    </script>
+    <script>
+        const options = {
+      margin: 0.5,
+      filename: 'admit.pdf',    //name the output file
+      image: { 
+        type: 'jpeg',     //image type
+        quality: 5000
+      },
+      html2canvas: { 
+        scale: 1 
+      },
+      jsPDF: { 
+        unit: 'in', 
+        format: 'letter', 
+        orientation: 'portrait'   // pdf orientation
+      }
+    }
+    
+    $('.btn-download').click(function(e){     // class for download button
+      e.preventDefault();
+      const element = document.getElementById('admit-body');   //id for content area
+      html2pdf().from(element).set(options).save();
+      document.getElementById("download2").style.display = "none";
+    });
     </script>
 </body>
 
