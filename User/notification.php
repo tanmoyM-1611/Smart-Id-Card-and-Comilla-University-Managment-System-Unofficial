@@ -1,12 +1,11 @@
 <?php 
        
-       include("../functionAdmin.php")  ; 
-   
-       session_start();
-       $id=$_SESSION['adminID'];
-       if($id==null){
-        header("location:login.php");
-       }
+       include("../functionAdmin.php")  ;
+   session_start();
+   $id=$_SESSION['userID'];
+   if($id==null){
+    header("location:login.php");
+   }
        
        $projectAdmin=new deptProject;
        $mssgData= $projectAdmin->displayMssgData();
@@ -110,7 +109,7 @@
                             <tr>
                                 <th>Session</th>
                                 <th>Department</th>
-                                <th>Message</th>
+                                <th>Notice</th>
                                 <th>File</th>
                                 
 
@@ -123,8 +122,8 @@
                                 <td><?php  echo $mssg["dept_sessions"];?></td>
                                
                                 <td><?php  echo $mssg["dept"];?></td>
-                                <td><?php  echo $mssg["mssg"];?></td>
-                                <td><a class="btn btn-success ms-0 mt-1 mb-1" href="download.php?file=<?php echo $mssg['files'] ?>">Download</a><br></td>
+                                <td ><div style="color:red"><?php  echo $mssg["mssg"];?></div></td>
+                                <td><a class="btn btn-success ms-0 " href="download.php?file=<?php echo $mssg['files'] ?>">Download</a><br></td>
                                 
 
                                    
@@ -136,7 +135,7 @@
                             <tr>
                             <th>Session</th>
                                 <th>Department</th>
-                                <th>Message</th>
+                                <th>Notice</th>
                                 <th>File</th>
                             </tr>
                         </tfoot>
