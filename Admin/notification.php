@@ -97,7 +97,7 @@
                             <form class="form" enctype="multipart/form-data" method="POST" >
 
                                 <div class="form-group">
-                                <label class="mt-3" for="exampleInputEmail1">Session:</label>
+                                <label class="mt-3" for="exampleInputEmail1">Department:</label>
                             <select name="dept" id="student_dept" class="form-select mt-3"
                                 aria-label="Default select example" placeholder="Choice Your Session">
                                 <option selected>Choose Department</option>

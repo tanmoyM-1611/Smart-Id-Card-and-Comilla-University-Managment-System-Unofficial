@@ -145,10 +145,7 @@
     // delete data by id
 
     public function delete_data_by_id($id){
-        // $catch_img="SELECT * FROM student_info WHERE id=$id";
-        // $delete_std_info=mysqli_query($this->conn,$catch_img);
-        // $std_infoDle=mysqli_fetch_assoc($delete_std_info);
-        // $delete_imgData=$std_infoDle['std_img'];
+       
         $query="DELETE FROM student_info WHERE id=$id";
            
         if(mysqli_query($this->conn,$query)){
@@ -346,15 +343,7 @@
 } 
 
 
-    // public function displayCourse_data_by_semester($Student_semester){
-    //     $query = "SELECT * from courses where course_semester='$Student_semester' ";
-    //     if(mysqli_query($this->conn,$query)){
-    //         $return_data2=mysqli_query($this->conn,$query);
-    //         return $return_data2;
-    //         // $studentData2=mysqli_fetch_assoc($return_data2);
-    //         // return $studentData2;
-    //     }
-    // }
+   
 
     public function displayCourseDataBYSemester($data1,$data2,$data3){
         $query="SELECT * FROM courses where course_session='$data1' AND course_semester=$data2 AND course_department LIKE '%$data3%'" ;
@@ -364,6 +353,84 @@
         }
     }
 
+    
+    // Add Notification
+    public function add_notification($data){ 
+        $session=$data["session"];
+        $dept=$data["dept"];
+        $notifications=$data["notification"];
+       
+        $fileName = $_FILES["file"]["name"];
+        $fileTmpName = $_FILES["file"]["tmp_name"];
+        
+        $query = "INSERT INTO noti_fication(dept_sessions,dept,mssg,files)VALUES('$session','$dept','$notifications','$fileName')";
+       
+        if(mysqli_query($this->conn,$query)){
+            move_uploaded_file($fileTmpName,'E:\xampp\htdocs\project-5th\User\upload_file/'.$fileName);
+            return "info added successfully";
+
+        }
+    }
+    // display mssg
+    public function displayMssgData(){ 
+        $query="SELECT * FROM noti_fication";
+        if(mysqli_query($this->conn,$query)){
+            $display_data=mysqli_query($this->conn,$query);
+            return $display_data;
+        }
+    }
+    // Add form fill info
+    public function add_formfillinfo($data){
+        
+        $dept=$data["f_stdDept"];
+        $student_reg=$data["f_stdReg"];
+        $semester_no=$data["f_semester"];
+        $session_year=$data["f_stdSession"];
+        $hall_name=$data["f_stdHall"];
+        $cou_bank=$data["fcou_stdBank"];
+        $hall_bank=$data["fcouhall_stdBank"];
+        $dept_bank=$data["fcoudept_stdBank"];
+
+
+        $query="INSERT INTO formfill_up(dept,student_reg,semester_no,session_year,hall_name,cou_bank,hall_bank,dept_bank) VALUE('$dept','$student_reg','$semester_no','$session_year','$hall_name','$cou_bank','$hall_bank','$dept_bank')";
+
+           if(mysqli_query($this->conn,$query)){
+            header("location:formfill.php");
+               return "Student form Info added successfully!";
+              
+           }
+    }
+    }
+
+       ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// public function displayCourse_data_by_semester($Student_semester){
+    //     $query = "SELECT * from courses where course_semester='$Student_semester' ";
+    //     if(mysqli_query($this->conn,$query)){
+    //         $return_data2=mysqli_query($this->conn,$query);
+    //         return $return_data2;
+    //         // $studentData2=mysqli_fetch_assoc($return_data2);
+    //         // return $studentData2;
+    //     }
+    // }
+    
+    
     // Add result
     // public function add_Result($data){
     //     $student_id=$data["rstdREG"];
@@ -408,30 +475,9 @@
     //         return $studentData2;
     //     }
     // }
-    // Add Notification
-    public function add_notification($data){ 
-        $session=$data["session"];
-        $dept=$data["dept"];
-        $notifications=$data["notification"];
-       
-        $fileName = $_FILES["file"]["name"];
-        $fileTmpName = $_FILES["file"]["tmp_name"];
-        
-        $query = "INSERT INTO noti_fication(dept_sessions,dept,mssg,files)VALUES('$session','$dept','$notifications','$fileName')";
-       
-        if(mysqli_query($this->conn,$query)){
-            move_uploaded_file($fileTmpName,'E:\xampp\htdocs\project-5th\User\upload_file/'.$fileName);
-            return "info added successfully";
-
-        }
-    }
-    // display mssg
-    public function displayMssgData(){ 
-        $query="SELECT * FROM noti_fication";
-        if(mysqli_query($this->conn,$query)){
-            $display_data=mysqli_query($this->conn,$query);
-            return $display_data;
-        }
-    }
-    }
-       ?>
+     // $catch_img="SELECT * FROM student_info WHERE id=$id";
+        // $delete_std_info=mysqli_query($this->conn,$catch_img);
+        // $std_infoDle=mysqli_fetch_assoc($delete_std_info);
+        // $delete_imgData=$std_infoDle['std_img'];
+    
+    ?>

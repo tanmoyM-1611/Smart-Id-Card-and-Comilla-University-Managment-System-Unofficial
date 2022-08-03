@@ -3,7 +3,7 @@
    include("../functionAdmin.php")  ; 
    error_reporting(E_ERROR | E_PARSE);
    session_start();
-   $id=$_SESSION['adminID'];
+   $id=$_SESSION['userID'];
    if($id==null){
     header("location:login.php");
    }

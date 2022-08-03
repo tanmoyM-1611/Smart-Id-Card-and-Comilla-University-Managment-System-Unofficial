@@ -45,6 +45,16 @@
     <script src="https://kit.fontawesome.com/5a1010e0a8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <script type="text/javascript">
+      function lettersOnly(input){
+        var regex=/[^a-zA-Z' ']/gi;
+        input.value=input.value.replace(regex,"");
+      }
+
+      
+
+    </script>
+
 </head>
 
 <body class="sb-nav-fixed ">
@@ -114,8 +124,7 @@
                                 aria-label="Default select example" placeholder="Choice Your Session" required>
                                 <option selected>None</option>
                                 <option value="CSE">CSE</option>
-                                <option value="ICT">ICT</option>
-                                <option value="LAW">LAW</option>
+                                
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -132,19 +141,19 @@
                         <!-- name -->
                         <div class="col-12">
                             <label for="inputName" class="form-label">Name</label>
-                            <input type="text" name="stdName" class="form-control" id="inputName"
+                            <input type="text" name="stdName" class="form-control" id="inputName" onkeyup="lettersOnly(this)"
                                 placeholder="First Name + Last Name" required>
                         </div>
                         <!-- Fathers Name -->
                         <div class="col-md-6">
                             <label for="inputFathersName" class="form-label">Father's Name</label>
-                            <input type="text" name="stdFatherName" class="form-control" id="inputFathersName" required>
+                            <input type="text" onkeyup="lettersOnly(this)" name="stdFatherName" class="form-control" id="inputFathersName" required>
                         </div>
 
                         <!-- Mothers Name -->
                         <div class="col-md-6">
                             <label for="inputMothersName" class="form-label">Mother's Name</label>
-                            <input type="text" name="stdMotherName" class="form-control" id="inputMothersName" required>
+                            <input type="text" onkeyup="lettersOnly(this)" name="stdMotherName" class="form-control" id="inputMothersName" required>
                         </div>
 
                         <!-- Registration -->
@@ -179,7 +188,7 @@
                         <!-- Age -->
                         <div class="col-md-6">
                             <label for="inputAge" class="form-label">Age</label>
-                            <input type="number" name="stdAge" class="form-control" id="inputAge" required>
+                            <input  type="number" name="stdAge" class="form-control" id="inputAge" min="18" max="50" required>
                         </div>
 
                         <!-- Religion -->
@@ -216,18 +225,18 @@
                         <!-- Mobile -->
                         <div class="col-md-6">
                             <label for="inputNumber" class="form-label">Phone Number</label>
-                            <input type="tel" name="stdPhnNumber" class="form-control" id="inputRegNumber" required>
+                            <input pattern="[0-9]{11}" type="tel" name="stdPhnNumber" class="form-control" id="inputRegNumber" placeholder="Please Enter Your 11 digit Mobile Number" required>
                         </div>
                         <!-- address1 -->
                         <div class="col-12">
                             <label for="inputPresentAddress" class="form-label">Present Address</label>
-                            <input type="text" name="stdPresentAddress" class="form-control" id="inputAddress"
+                            <input onkeyup="lettersOnly(this)" type="text" name="stdPresentAddress" class="form-control" id="inputAddress"
                                 placeholder="Feni" required>
                         </div>
                         <!-- address2 -->
                         <div class="col-12">
                             <label for="inputParmanentAddress" class="form-label">Parmanent Address </label>
-                            <input type="text" name="stdParmanentAddress" class="form-control" id="inputAddress2"
+                            <input onkeyup="lettersOnly(this)" type="text" name="stdParmanentAddress" class="form-control" id="inputAddress2"
                                 placeholder="Manikganj" required>
                         </div>
                         <div>
