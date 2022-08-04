@@ -381,7 +381,7 @@
     }
     // Add form fill info
     public function add_formfillinfo($data){
-        
+        // Br means bank Recipt
         $dept=$data["f_stdDept"];
         $student_reg=$data["f_stdReg"];
         $semester_no=$data["f_semester"];
@@ -390,17 +390,132 @@
         $cou_bank=$data["fcou_stdBank"];
         $hall_bank=$data["fcouhall_stdBank"];
         $dept_bank=$data["fcoudept_stdBank"];
+        $cou_status=$data["statuscou"];
+        $couHall_status=$data["statuscouHall"];
+        $couDept_status=$data["statuscouDept"];
+        // $couBR_img=$_FILES["couBR_img"]["name"];
+        // $tmp_name1=$_FILES["couBR_img"]["tmp_name"];
+        // $couHallBR_img=$_FILES["couHallBR_img"]["name"];
+        // $tmp_name2=$_FILES["couHallBR_img"]["tmp_name"];
+        // $couDeptBR_img=$_FILES["couDeptBR_img"]["name"];
+        // $tmp_name3=$_FILES["couDeptBR_img"]["tmp_name"];
+        $mobile_number=$data["fstdPhnNumber"];
 
-
-        $query="INSERT INTO formfill_up(dept,student_reg,semester_no,session_year,hall_name,cou_bank,hall_bank,dept_bank) VALUE('$dept','$student_reg','$semester_no','$session_year','$hall_name','$cou_bank','$hall_bank','$dept_bank')";
+        $query="INSERT INTO formfill_up(dept,student_reg,semester_no,session_year,hall_name,cou_bank,hall_bank,dept_bank,cou_status,couHall_status,couDept_status,mobile_number) VALUES ('$dept','$student_reg','$semester_no','$session_year','$hall_name','$cou_bank','$hall_bank','$dept_bank', '$cou_status', '$couHall_status','$couDept_status','$mobile_number')";
 
            if(mysqli_query($this->conn,$query)){
+            // move_uploaded_file($tmp_name1,'E:\xampp\htdocs\project-5th\User\upload2/'.$couBR_img);
+            // move_uploaded_file($tmp_name2,'E:\xampp\htdocs\project-5th\User\upload2/'.$couHallBR_img);
+            // move_uploaded_file($tmp_name3,'E:\xampp\htdocs\project-5th\User\upload2/'.$couDeptBR_img);
             header("location:formfill.php");
-               return "Student form Info added successfully!";
+               return "student form Info added successfully!";
               
            }
     }
+    // display form fillup info cou administrator
+    public function display_formfillinfo(){
+     
+        $query="SELECT * FROM formfill_up";
+        if(mysqli_query($this->conn,$query)){
+            $display_data=mysqli_query($this->conn,$query);
+            return $display_data;
+        }
+
     }
+
+   
+
+// cou administrator
+    public function display_Fromdata_by_id_fromAdmin($id_no){
+        $query = "SELECT * from formfill_up where formfill_id='$id_no' ";
+        if(mysqli_query($this->conn,$query)){
+            $return_data2=mysqli_query($this->conn,$query);
+            // return $return_data;
+            $studentData2=mysqli_fetch_assoc($return_data2);
+            return $studentData2;
+        }
+    }
+
+     // verified by cou administration
+     public function verified_formdatabycou($data1,$data2){
+        
+        $idno=$data1;
+        $status=$data2;
+        $q="UPDATE  formfill_up SET cou_status=$status WHERE formfill_id=$idno ";
+            if(mysqli_query($this->conn,$q)){
+                    header("location:homeAdmincou.php");
+               return "verified successfully";
+    }
+        }
+
+    //display_formfillinfoByHall_BHMRH
+    public function display_formfillinfoByHall_BSMRH(){
+     
+        $query="SELECT * FROM formfill_up WHERE hall_name LIKE'%BSMRH%'" ;
+        if(mysqli_query($this->conn,$query)){
+            $display_data=mysqli_query($this->conn,$query);
+            return $display_data;
+        }
+
+    }
+     // verified by cou hall BHMRH
+     public function verified_formdatabyhall_BSMRH($data1,$data2){
+        
+        $idno=$data1;
+        $status=$data2;
+        $q="UPDATE  formfill_up SET couHall_status=$status WHERE formfill_id=$idno ";
+            if(mysqli_query($this->conn,$q)){
+                    header("location:homeAdminhall1.php");
+               return "verified successfully";
+    }
+        }
+   
+        // Hall 2
+        public function display_formfillinfoByHall_SHH(){
+     
+            $query="SELECT * FROM formfill_up WHERE hall_name LIKE '%SHH%'" ;
+            if(mysqli_query($this->conn,$query)){
+                $display_data=mysqli_query($this->conn,$query);
+                return $display_data;
+            }
+    
+        }
+    // Hall 2 verified
+        public function verified_formdatabyhall_SHH($data1,$data2){
+        
+            $idno=$data1;
+            $status=$data2;
+            $q="UPDATE  formfill_up SET couHall_status=$status WHERE formfill_id=$idno ";
+                if(mysqli_query($this->conn,$q)){
+                        header("location:homeAdminhall2.php");
+                   return "verified successfully";
+        }
+            }
+
+            // verified by dept
+            public function verified_formdatabyDept($data1,$data2){
+        
+                $idno=$data1;
+                $status=$data2;
+                $q="UPDATE  formfill_up SET couDept_status=$status WHERE formfill_id=$idno ";
+                    if(mysqli_query($this->conn,$q)){
+                            header("location:formfill_dept.php");
+                       return "verified successfully";
+            }
+                }
+
+                // display_formfillinfoById
+                public function display_formfillinfoById($data1,$data2){
+                    $query = "SELECT * from formfill_up where student_reg=$data1 AND semester_no=$data2 ";
+                    if(mysqli_query($this->conn,$query)){
+                        $return_data2=mysqli_query($this->conn,$query);
+                        // return $return_data;
+                        $studentData2=mysqli_fetch_assoc($return_data2);
+                        return $studentData2;
+                    }
+                }
+
+}
 
        ?>
 

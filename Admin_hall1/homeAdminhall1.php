@@ -8,18 +8,19 @@
    }
 
    $projectAdmin=new deptProject;
-   $stdData= $projectAdmin->displayData();
+   $stdFormData= $projectAdmin->display_formfillinfoByHall_BSMRH();
 
-  //  delete data
-  if(isset($_GET['status'])){
-    if($_GET['status']='delete'){
-        $delete_id=$_GET['id'];
-  $delMsg= $projectAdmin->delete_data_by_id($delete_id);
-    }
-    
-  }
+//    delete data
+//   if(isset($_GET['status'])){
+//     if($_GET['status']='delete'){
+//         $delete_id=$_GET['id'];
+//   $delMsg= $projectAdmin->delete_data_couAdministrator_by_id($delete_id);
+//     }
+//  }
 
-  
+// if(isset($_POST['submit_status'])){
+//     $projectAdmin->verified_formdatabycou($_POST);
+// }
 
 ?>
 
@@ -42,7 +43,7 @@
     </script>
 
     <script src="https://kit.fontawesome.com/5a1010e0a8.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
@@ -55,9 +56,9 @@
         <div class="sidenav">
 
             <a href="homeAdmin.php">Home</a>
-            
-            
-            
+
+
+
 
             <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
@@ -67,7 +68,7 @@
         <div class="main">
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Comilla University</a>
+                    <a class="navbar-brand" href="#">Bangabandhu Sheikh Mujibur Rahman Hall,Comilla University</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -100,55 +101,64 @@
                                 <thead>
                                     <tr>
                                         <th>Registration Number</th>
-                                        <th>Name</th>
                                         <th>Department</th>
                                         <th>Session</th>
-                                        <th>Image</th>
+                                        <th>Semester</th>
+                                        <th>Hall Receipt</th>
                                         <th>Status</th>
+                                       
+                                        
                                         <th>Action</th>
 
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <?php while($student=mysqli_fetch_assoc($stdData)) { ?>
+                                    <?php while($students=mysqli_fetch_assoc($stdFormData)) { ?>
                                     <tr>
-                                        <td><?php  echo $student["stdRegNumber"];?></td>
-                                        <td><?php echo $student["stdName"];?></td>
-                                        <td><?php echo $student["stdDeptName"];?></td>
-                                        <td><?php echo $student["stdSession"];?></td>
-                                        <td><img style="height:50px"
-                                                src="../User//upload/<?php echo $student["std_img"];?>" alt=""></td>
-
-                                        <td><?php echo $student["stdStatus"];?></td>
+                                        <td><?php  echo $students["student_reg"];?></td>
+                                        <td><?php echo $students["dept"];?></td>
+                                        <td><?php echo $students["session_year"];?></td>
+                                        <td><?php echo $students["semester_no"];?></td>
+                                        <td><?php echo $students["hall_bank"];?></td>
+                                        <td><?php echo $students["cou_status"];?></td>
+                                
                                         <td>
 
-                                            <a class="btn btn-success ms-3 mt-1 mb-1"
-                                                href="edit.php?status=edit&&id=<?php echo $student["id"];?>">EDIT</a>
-                                            <a class="btn btn-danger mt-1 mb-1"
-                                                href="?status=delete&&id=<?php echo $student["id"];?>"> DELETE</a>
+                                           
+                                       
+                                       
 
-                                            <?php   if(($student["stdStatus"])==0)  { echo    
-                                           "<a id='ver' class='btn btn-warning m mt-1 mb-1'
-                                                href='verified.php?status=verified&&id=$student[id]'>VERIFIED</a>";
-                                                }
+                                              
+                                              <?php
+
+                                               if(($students["couHall_status"])==0)  { 
+                                          echo  "<a id='ver' class='btn btn-warning m mt-1 mb-1'
+                                                href='verifiedHall1.php?status=1&&id=$students[formfill_id]'>VERIFIED</a>";
+                                        
+                                    
+                                    }
+                                    else{ echo "<a id='ver' class='btn btn-danger m mt-1 mb-1'
+                                        href='verifiedHall1.php?status=0&&id=$students[formfill_id]'>Not Verified</a>";}
                                                
                                                 ?>
+                                                
                                         </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
-            <tr>
+                                    <tr>
                                         <th>Registration Number</th>
-                                        <th>Name</th>
                                         <th>Department</th>
                                         <th>Session</th>
-                                        <th>Image</th>
+                                        <th>Semester</th>
+                                        <th>Hall Receipt</th>
                                         <th>Status</th>
                                         <th>Action</th>
-            </tr>
-        </tfoot>
+
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -175,9 +185,9 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        $(document).ready(function(){  
-      $('#table_data').DataTable();  
- }); 
+    $(document).ready(function() {
+        $('#table_data').DataTable();
+    });
     </script>
 </body>
 

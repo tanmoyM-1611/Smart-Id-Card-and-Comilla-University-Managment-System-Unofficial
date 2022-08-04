@@ -45,6 +45,8 @@
               echo "alert('Dont found any data!')";  
               echo '</script>'; 
              }
+             $projectAdmin=new deptProject;
+         $stdFormData= $projectAdmin->display_formfillinfoById($stdRegNumber, $id_semester);
   
 
   }
@@ -64,7 +66,7 @@ if(isset($_POST["submit_form"])){
          echo '</script>'; 
         }
          }
-
+         
 
 ?>
 
@@ -255,7 +257,7 @@ if(isset($_POST["submit_form"])){
 
                     <div class="card card-body">
                         <!-- return false -->
-                        <form onsubmit="" method="POST" enctype="multipart/form-data" class="row g-3">
+                        <form  method="POST" enctype="multipart/form-data" class="row g-3">
 
 
 
@@ -312,7 +314,8 @@ if(isset($_POST["submit_form"])){
                                     placeholder="">
                             </div>
                             <!-- img -->
-
+                             
+                             
                             <!-- DOB -->
                             <div class="col-md-6">
                                 <label class="form-label" for="birthday">Date Of Birth:</label>
@@ -344,7 +347,7 @@ if(isset($_POST["submit_form"])){
                             <!-- Mobile -->
                             <div class="col-md-12">
                                 <label for="inputNumber" class="form-label">Phone Number</label>
-                                <input type="number" name="stdPhnNumber" class="form-control" id="inputRegNumber"
+                                <input type="number" name="fstdPhnNumber" class="form-control" id="inputRegNumber"
                                     value="<?php if(isset($data)){ echo $stdPhnNumber;}?>">
                             </div>
                             <!-- address1 -->
@@ -361,18 +364,35 @@ if(isset($_POST["submit_form"])){
                             </div>
                             <!-- Cou Authority Bank -->
                             <div class="col-4">
-                                <label for="" class="form-label">Cou Authority Bank Receipt</label>
-                                <input type="number" name="fcou_stdBank" class="form-control" id="">
+                                <label for="" class="form-label">Cou Authority Receipt</label>
+                                <input type="text" name="fcou_stdBank" class="form-control" id="" value="<?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) { echo $stdFormData["cou_bank"];}?>">
                             </div>
                             <!-- Cou Hall Authority Bank -->
                             <div class="col-4">
-                                <label for="" class="form-label">Hall Bank Receipt</label>
-                                <input type="number" name="fcouhall_stdBank" class="form-control" id="">
+                                <label for="" class="form-label">Hall Bank Receipt </label>
+                                <input type="text" name="fcouhall_stdBank" class="form-control" id="" value="<?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) { echo $stdFormData["hall_bank"];}?>">
                             </div>
                             <div class="col-4">
                                 <label for="" class="form-label">Dept Bank Receipt</label>
-                                <input type="number" name="fcoudept_stdBank" class="form-control" id="">
+                                <input type="text" name="fcoudept_stdBank" class="form-control" id="" value="<?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) { echo $stdFormData["dept_bank"];}?>">
                             </div>
+
+                            <!-- image bank reciept for cou() -->
+                            <!-- <div class="col-md-4">
+                            <label class="form-label" for="image">Upload your Receipt(cou)</label>
+                            <input class="form-control mb-2" type="file" name="couBR_img">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label" for="image">Upload your Receipt(cou hall)(82*87)</label>
+                            <input class="form-control mb-2" type="file" name="couHallBR_img">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label" for="image">Upload your Receipt(cou dept)</label>
+                            <input class="form-control mb-2" type="file" name="couDeptBR_img">
+                        </div> -->
+                        
                             <!-- <div class="col-12">
                                 <button type="submit" name="add_info" class="btn btn-primary">Save</button>
 
@@ -382,6 +402,13 @@ if(isset($_POST["submit_form"])){
                                 <input type="text" class="form-control" name="stdSemYear" id=""
                                     value=" <?php if(isset($_POST["semester_finalDate"])){echo  $_POST["semester_finalDate"];}?>">
                             </div>
+                              <!-- status -->
+                              <div>
+                            <input type="hidden" name="statuscou" value="0">
+                            <input type="hidden" name="statuscouHall" value="0">
+                            <input type="hidden" name="statuscouDept" value="0">
+
+                                </div>
 
                             <!-- for me -->
 
@@ -427,28 +454,49 @@ if(isset($_POST["submit_form"])){
                                     </div>
                                 </div>
                             </div>
-                            
+
                     </div>
 
+<!-- Finance and Accounts Department -->
+<!-- Controller of Examinations -->
 
-
-                    <div style="margin-top:130px" class="ms-auto d-flex ">
+                    <div style="margin-top:80px;" class="me-auto d-flex ">
+                    <div class="me-4">
+                    <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
+                              echo  "<p style='text-align:center'>controller</p>";  
+                            }?>
+                            <b style='font-size:15px;'>Controller of Examinations</b>
+                        </div>
+                    <div class="me-4">
+                    <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
+                              echo  "<p style='text-align:center'>Hall Principle</p>";  
+                            }?>
+                            <b style='font-size:15px;'>Signature Of the Hall Principle</b>
+                        </div>
                         <div class="me-4">
-                            <p></p>
-                            <h2 style='font-size:12px;'>Your Signature</h2>
+                        <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
+                              echo  "<p style='text-align:center'>sign</p>";  
+                            }?>
+                            <b style='font-size:15px;'>Finance and Accounts Department</b>
                         </div>
                         <div>
-                            <p></p>
-                            <h2 style='font-size:12px;'>Chairman Signature</h2>
+                             <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
+                              echo  "<p style='text-align:center'>Chairman</p>";  
+                            }?>
+                            <b style='font-size:15px;'>Chairman Signature</b>
                         </div>
-                       
-                    </div> 
-                    <button class="btn btn-outline-primary mt-3 "   type="submit"
-                                    name="submit_form">Submit</button>
-                        </form>
+                         
+                    </div>
+                    <?php if($stdFormData["cou_status"]==0 && $stdFormData["couHall_status"]==0&& $stdFormData["couDept_status"]==0) {
+                 echo    '<button id="submitButton" class="btn btn-outline-primary mt-3 " type="submit" name="submit_form">Submit</button>';}?>
+                    </form>
                 </header>
-                <div style="text-align:center"> <button id="download" class="downloadtable btn btn-primary mt-2">
-                        Download Form</button></div>
+
+                <div style="text-align:center">
+                
+                <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {echo
+                '<button id="download" class="downloadtable btn btn-primary mt-2">
+                        Download Form</button>';}?></div>
                 <!-- main -->
                 <div id="admit-body" class="row " style="border:dotted;margin-top:50px">
 
@@ -474,8 +522,8 @@ if(isset($_POST["submit_form"])){
 
                         <form onsubmit="return false" method="POST" enctype="multipart/form-data" class="row g-3">
 
-                            <div class="col-md-12">
-                                <label for="" class="form-label"><b>Semester Final Year:</b> </label>
+                            <div class="col-md-6">
+                                <label for="" class="form-label"><b>Semester Final Examination Year:</b> </label>
                                 <input class="form-control" name="stdSemYear" id=""
                                     value=" <?php if(isset($_POST["semester_finalDate"])){echo  $_POST["semester_finalDate"];}?>">
                             </div>
@@ -521,31 +569,40 @@ if(isset($_POST["submit_form"])){
                                     placeholder="">
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="inputNumber" class="form-label">Phone Number</label>
                                 <input type="number" name="stdPhnNumber" class="form-control" id="inputRegNumber"
                                     value="<?php if(isset($data)){ echo $stdPhnNumber;}?>">
                             </div>
+                          
 
                         </form>
                     </div>
 
-                    <div style="margin-top:10px" class="ms-auto d-flex mt-4">
-                        <div class="me-4">
-                            <p></p>
-                            <h2 style='font-size:12px;'>Your Signature</h2>
+                    <div style="margin-top:30px" class="ms-auto d-flex ">
+                        <div class="me-5">
+                        <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
+                        echo   "<p style='text-align:center'>$stdName</p>";
+                        }?>
+                            <b class="mt-4" style='font-size:19px;'>Your Signature</b>
                         </div>
                         <div>
-                            <p></p>
-                            <h2 style='font-size:12px;'>Controller Of Examination's Signature</h2>
+                        <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
+                        echo   "<p style='text-align:center'>controller sign</p>";
+                        }?>
+                         
+                            <b class="mt-4" style='font-size:19px;'>Controller Of Examination's Signature</b>
                         </div>
 
                     </div>
 
                 </div>
-                <div style="text-align:center"> <button href="javascript:void(0)" id="download2"
+                <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
+             echo   ' <div style="text-align:center"> <button href="javascript:void(0)" id="download2"
                         class="downloadtable btn btn-primary mt-2 btn-download"> Download Admit Card</button>
-                </div>
+                </div>';
+                }
+                ?>
 
             </div>
 
@@ -594,7 +651,7 @@ if(isset($_POST["submit_form"])){
                 };
                 html2pdf().from(formBody).set(opt).save();
                 document.getElementById("download").style.display = "none";
-                document.getElementById("course-submit").style.display = "none";
+                document.getElementById("submitButton").style.display = "none";
 
             })
     }

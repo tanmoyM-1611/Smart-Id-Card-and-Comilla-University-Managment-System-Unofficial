@@ -128,7 +128,7 @@
            }
            else{
             echo '<script type ="text/JavaScript">';  
-            echo "alert('Donot found any data!')";  
+            echo "alert('Don't found any data!')";  
             echo '</script>'; 
            }                   
              
