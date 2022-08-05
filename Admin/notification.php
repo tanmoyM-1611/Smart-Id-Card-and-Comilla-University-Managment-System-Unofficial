@@ -66,12 +66,13 @@
        
         ?>
         <div class="sidenav">
-            <a href="homeAdmin.php">Home</a>
-            <a href="courses.php">Courses</a>
-            <a href="resultAdmin.php">Result</a>
-            <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
+        <a href="homeAdmin.php"><h5>Home</h5></a>
+            <a href="courses.php"><h5>Courses</h5></a>
+            <a href="resultAdmin.php"><h5>Result</h5></a>
+            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="notification.php"><h5>Notice+</h5></a>
 
-            <div style="padding-top:380px" class="ms-3">
+            <div style="padding-top:320px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -79,7 +80,7 @@
         <div class="main">
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">CSE,Comilla University</a>
+                    <a class="navbar-brand" href="homeAdmin.php">CSE,Comilla University</a>
 
                 </div>
             </nav>

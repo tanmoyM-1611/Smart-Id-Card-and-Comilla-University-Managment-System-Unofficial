@@ -505,7 +505,8 @@
                 }
 
                 // display_formfillinfoById
-                public function display_formfillinfoById($data1,$data2){
+                public function display_formfillinfoById($data1,$data2)
+                {
                     $query = "SELECT * from formfill_up where student_reg=$data1 AND semester_no=$data2 ";
                     if(mysqli_query($this->conn,$query)){
                         $return_data2=mysqli_query($this->conn,$query);
@@ -515,6 +516,47 @@
                     }
                 }
 
+                // public function  add_result_SubjectWise($data){
+                  
+                //     $std_reg=$data["reg"];
+                //   $dept=$data["dept"];
+                //   $std_session=$data["session"];
+                //   $semester=$data["semester"];
+                //   $course_name1=$data["stdCourseName"];
+                //   $course_name=implode(",",$course_name1);
+                //   $course_credit=$data["stdCourseCredit"];
+                //   $total_mark=$data["stdTmSubject"];
+                //   $cgpa=$data["stdCgSubject"];
+
+                //   $query2="INSERT INTO result_subjectwise(std_reg,dept,std_session,semester,course_name,course_credit,total_mark,cgpa) VALUE('$std_reg','$dept','$std_session','$semester','$course_name','  $course_credit','$total_mark','$cgpa')";
+                
+                //   if(mysqli_query($this->conn,$query2)){
+                //     header("result3.php");
+                //       return "add subject wise result";
+                //   }
+
+
+                // }
+
+                public function  display_result_SubjectWise_by_id($data1,$data2){
+                    $query = "SELECT * from result_subjectwise where s_reg=$data1 AND s_semester=$data2 ";
+                    if(mysqli_query($this->conn,$query)){
+                        $return_data2=mysqli_query($this->conn,$query);
+                        // return $return_data2;
+                        $studentresultData2=mysqli_fetch_assoc($return_data2);
+                        return $studentresultData2;
+                    }
+                }
+
+                // display_result_SubjectWise_by_idforViewResult
+                public function  display_result_SubjectWise_by_idforViewResult($data1,$data2){
+                    $query = "SELECT * from result_subjectwise where s_reg=$data1 AND s_semester=$data2 ";
+                    if(mysqli_query($this->conn,$query)){
+                        $return_data2=mysqli_query($this->conn,$query);
+                        return $return_data2;
+                       
+                    }
+                }
 }
 
        ?>

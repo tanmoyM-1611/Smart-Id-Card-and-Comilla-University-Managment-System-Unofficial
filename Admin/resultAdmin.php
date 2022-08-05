@@ -8,7 +8,9 @@
    }
 
    $projectAdmin=new deptProject;
+   $projectAdmin2=new deptProject;
    $stdData= $projectAdmin->displayData();
+   $stdData1= $projectAdmin2->display_formfillinfo();
 
   //  delete data
 //   if(isset($_GET['status'])){
@@ -54,10 +56,11 @@
     <section>
         <div class="sidenav">
 
-        <a href="homeAdmin.php">Home</a>
-        <a href="courses.php">Courses</a>
-            <a href="resultAdmin.php">Result</a>
-            <a href="https://cou.ac.bd/cse/facultymember">Faculty</a>
+            <a href="homeAdmin.php"><h5>Home</h5></a>
+            <a href="courses.php"><h5>Courses</h5></a>
+            <a href="resultAdmin.php"><h5>Result</h5></a>
+            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="notification.php"><h5>Notice+</h5></a>
 
             <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
@@ -67,7 +70,7 @@
         <div class="main">
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Comilla University</a>
+                    <a class="navbar-brand" href="homeAdmin.php">Comilla University</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -100,37 +103,30 @@
                                 <thead>
                                     <tr>
                                         <th>Registration Number</th>
-                                        <th>Name</th>
                                         <th>Department</th>
                                         <th>Session</th>
-                                        
-                                        <th>Status</th>
+                                        <th>Semester</th>
                                         <th>Action(Result)</th>
 
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <?php while($student=mysqli_fetch_assoc($stdData)) { ?>
+                                    <?php while($student=mysqli_fetch_assoc($stdData1)) { ?>
 
-                                      <?php if  ($student["stdStatus"]==1){?>
+                                      <?php if  ($student["cou_status"]==1 && $student["couHall_status"]==1 && $student["couDept_status"]==1){?>
                                     <tr>
                                      
-                                        <td><?php  echo $student["stdRegNumber"];?></td>
-                                        <td><?php echo $student["stdName"];?></td>
-                                        <td><?php echo $student["stdDeptName"];?></td>
-                                        <td><?php echo $student["stdSession"];?></td>
-                                       
-                                        
-                                        <td><?php echo $student["stdStatus"];?></td>
+                                        <td><?php  echo $student["student_reg"];?></td>
+                                        <td><?php echo $student["dept"];?></td>
+                                        <td><?php echo $student["session_year"];?></td>
+                                        <td><?php echo $student["semester_no"];?></td>
                                         <td>
-                                        <a class="btn btn-success ms-3  mt-0"
-                                                href="addResult.php?status=addResult&&id=<?php echo $student["id"];?>">ADD</a>
+                                        
                                             <a class="btn btn-warning mt-0"
-                                                href="viewResult1.php?status=viewResult&&id=<?php echo $student["id"];?>">VIEW</a>
+                                                href="viewresult5.php">VIEW</a>
                                            
-                                                <a class="btn btn-danger mt-0"
-                                                href="editResult1.php?status=editResult&&id=<?php echo $student["id"];?>">EDIT</a>
+                                             
                                         </td>
                                     </tr>
                                       <?php }?>
@@ -138,12 +134,10 @@
                                 </tbody>
                                 <tfoot>
             <tr>
-                                        <th>Registration Number</th>
-                                        <th>Name</th>
+            <th>Registration Number</th>
                                         <th>Department</th>
                                         <th>Session</th>
-                                        
-                                        <th>Status</th>
+                                        <th>Semester</th>
                                         <th>Action(Result)</th>
             </tr>
         </tfoot>
@@ -152,7 +146,11 @@
                     </div>
 
                 </div>
-
+                
+              <div style="text-align:center">
+                <a class="btn btn-success ms-3  mt-0"
+                                                href="result3.php">ADD RESULT</a>
+              </div>  
 
                 <footer class=" ">
                     <div class="container-fluid">
@@ -167,6 +165,7 @@
                     </div>
                 </footer>
             </div>
+
         </div>
     </section>
     <!-- <script src="../Admin//js/scripts.js"></script> -->
