@@ -20,6 +20,22 @@
 //     }
     
 //   }
+if(isset($_POST['search'])){
+       
+   
+    $id_session=$_POST['Student_session'];
+    $id_semester=$_POST['Student_semester'];
+    $id_dept=$_POST['Student_dept'];
+    $projectAdmin=new deptProject;
+    
+    
+    
+         
+          $subWiseResultInfo=new deptProject; 
+       $data3=$subWiseResultInfo->display_result_SubjectWise_all_forViewResult($_POST['Student_session'],$_POST['Student_semester'],$_POST['Student_dept']);
+      
+
+}
 
   
 
@@ -44,7 +60,7 @@
     </script>
 
     <script src="https://kit.fontawesome.com/5a1010e0a8.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
@@ -56,11 +72,21 @@
     <section>
         <div class="sidenav">
 
-            <a href="homeAdmin.php"><h5>Home</h5></a>
-            <a href="courses.php"><h5>Courses</h5></a>
-            <a href="resultAdmin.php"><h5>Result</h5></a>
-            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
-            <a href="notification.php"><h5>Notice+</h5></a>
+            <a href="homeAdmin.php">
+                <h5>Home</h5>
+            </a>
+            <a href="courses.php">
+                <h5>Courses</h5>
+            </a>
+            <a href="resultAdmin.php">
+                <h5>Result</h5>
+            </a>
+            <a href="formfill_dept.php">
+                <h5>Form Recipt</h5>
+            </a>
+            <a href="notification.php">
+                <h5>Notice+</h5>
+            </a>
 
             <div style="padding-top:380px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
@@ -89,6 +115,52 @@
                     </div>
                 </div>
             </nav>
+            <div style="" class="col-sm-6 container  mt-3 mb-3 ">
+                <div class="card border-5 rounded-3">
+                    <div class="card-body">
+                        <form class="form" method="POST" action="">
+
+
+
+                            <!--Department  -->
+                            <label class="mt-3" for="exampleInputEmail1">Department:</label>
+                            <select name="Student_dept" id="student_dept" class="form-select mt-3"
+                                aria-label="Default select example" placeholder="Choice Your Session">
+                                <option selected>Choose Department</option>
+                                <option value="CSE">CSE</option>
+                            </select>
+                            <!-- Session -->
+                            <label class="mt-3" for="exampleInputEmail1">Session:</label>
+                            <select name="Student_session" id="student_session" class="form-select mt-3"
+                                aria-label="Default select example" placeholder="Choice Your Session">
+                                <option selected>Choose Session</option>
+                                <option value="2017-18">2017-18</option>
+                                <option value="2018-19">2018-19</option>
+                                <option value="2019-20">2019-20</option>
+                            </select>
+
+                            <!--Semester  -->
+                            <label class="mt-3" for="exampleInputEmail1">Semester:</label>
+                            <select name="Student_semester" id="student_semester" class="form-select mt-3"
+                                aria-label="Default select example">
+                                <option selected>Choose Semester</option>
+                                <option value="1">1st</option>
+                                <option value="2">2nd</option>
+                                <option value="3">3rd</option>
+                            </select>
+                            <!-- Semester Final Year -->
+
+
+                            <br>
+                            <div style="text-align:center ;">
+                                <button class="btn btn-outline-primary mt-3 " type="submit"
+                                    name="search">Generate</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             <div class="container">
                 <h1 class="mt-4">Result</h1>
@@ -103,54 +175,60 @@
                                 <thead>
                                     <tr>
                                         <th>Registration Number</th>
-                                        <th>Department</th>
-                                        <th>Session</th>
-                                        <th>Semester</th>
+                                        <th>Course Name</th>
+                                        <th>Course Credit</th>
+                                        <th>Total Mark</th>
+                                        <th>Cgpa(subject wise)</th>
                                         <th>Action(Result)</th>
 
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <?php while($student=mysqli_fetch_assoc($stdData1)) { ?>
+                                    <?php if (isset($data3)) {?>
+                                    <?php while($students=mysqli_fetch_assoc($data3)) { ?>
 
-                                      <?php if  ($student["cou_status"]==1 && $student["couHall_status"]==1 && $student["couDept_status"]==1){?>
+
                                     <tr>
-                                     
-                                        <td><?php  echo $student["student_reg"];?></td>
-                                        <td><?php echo $student["dept"];?></td>
-                                        <td><?php echo $student["session_year"];?></td>
-                                        <td><?php echo $student["semester_no"];?></td>
+
+                                        <td><?php  echo $students["s_reg"];?></td>
+                                        <td><?php echo $students["course_name"];?></td>
+                                        <td><?php echo $students["course_credit"];?></td>
+                                        <td><?php echo $students["total_mark"];?></td>
+                                        <td><?php echo $students["cgpa"];?></td>
                                         <td>
-                                        
-                                            <a class="btn btn-warning mt-0"
-                                                href="viewresult5.php">VIEW</a>
-                                           
-                                             
+
+                                            <a class="btn btn-danger mt-0 ms-5" href="editResult.php">EDIT</a>
+                                            
+
+
                                         </td>
                                     </tr>
-                                      <?php }?>
-                                    <?php } ?>
+                                    <?php }?>
+                                   <?php } ?>
                                 </tbody>
                                 <tfoot>
-            <tr>
-            <th>Registration Number</th>
-                                        <th>Department</th>
-                                        <th>Session</th>
-                                        <th>Semester</th>
+                                    <tr>
+
+                                        <th>Registration Number</th>
+                                        <th>Course Name</th>
+                                        <th>Course Credit</th>
+                                        <th>Total Mark</th>
+                                        <th>Cgpa(subject wise)</th>
                                         <th>Action(Result)</th>
-            </tr>
-        </tfoot>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
 
                 </div>
+
+                <div style="text-align:center">
+                    <a class="btn btn-success ms-3  mt-0" href="result3.php">ADD RESULT</a>
+                    <a class="btn btn-warning ms-3  mt-0" href="viewResult5.php">VIEW FULL RESULT(with cgpa)</a>
+                </div>
                 
-              <div style="text-align:center">
-                <a class="btn btn-success ms-3  mt-0"
-                                                href="result3.php">ADD RESULT</a>
-              </div>  
 
                 <footer class=" ">
                     <div class="container-fluid">
@@ -172,9 +250,9 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        $(document).ready(function(){  
-      $('#table_data').DataTable();  
- }); 
+    $(document).ready(function() {
+        $('#table_data').DataTable();
+    });
     </script>
 </body>
 

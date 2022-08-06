@@ -1,11 +1,13 @@
 <?php 
        
-       include("../functionAdmin.php")  ;
-   session_start();
-   $id=$_SESSION['userID'];
-   if($id==null){
-    header("location:login.php");
-   }
+       include("../functionAdmin.php")  ; 
+  error_reporting(E_ERROR | E_PARSE);
+  session_start();
+  $id=$_SESSION['adminID'];
+  if($id==null){
+   header("location:login.php");
+  
+ }
        
        $projectAdmin=new deptProject;
        $mssgData= $projectAdmin->displayMssgData();
@@ -43,9 +45,7 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="sb-nav-fixed">
@@ -54,31 +54,19 @@
        
         ?>
         <div class="sidenav">
-            <a href="home.php">
-                <h4>Home</h4>
-            </a>
-            <a href="idCard.php">
-                <h4>Id Card</h4>
-            </a>
-            <a href="formfill.php">
-                <h4>Form Fillup</h4>
-            </a>
-            <a href="viewresultUser.php">
-                <h4>Result</h4>
-            </a>
-            <a href="about.php">
-                <h4>About</h4>
-            </a>
-
-
-            <div style="padding-top:250px" class="ms-4">
+        <a href="homeAdmin.php"><h5>Home</h5></a>
+            <a href="courses.php"><h5>Courses</h5></a>
+            <a href="resultAdmin.php"><h5>Result</h5></a>
+            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="notification.php"><h5>Notice+</h5></a>
+            <div style="padding-top:350px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
         <!-- Navigation bar start  -->
         <div class="main">
 
-            <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
+        <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">CSE,Comilla University</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -87,8 +75,7 @@
                 <ul class="nav justify-content-end">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="notification.php"><i style="font-size:20px"
-                                class="fa-solid fa-bell"></i></a>
+                    <a class="nav-link" href="notification.php"><i style="font-size:20px" class="fa-solid fa-bell"></i></a>
                     </li>
 
                 </ul>
@@ -97,64 +84,60 @@
 
             <br>
             <div class="container">
-                <h1 class="mt-4"></h1>
+            <h1 class="mt-4"></h1>
                 <div class="card border-5 rounded-3 mb-4">
                     <div class="card-header border-5 rounded-3">
                         <i class="fas fa-table mr-1"></i>
                         Courses
                     </div>
-                    <div class="card-body border-5 rounded-3">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Session</th>
-                                        <th>Department</th>
-                                        <th>Notice</th>
-                                        <th>File</th>
+            <div class="card-body border-5 rounded-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Session</th>
+                                <th>Department</th>
+                                <th>Notice</th>
+                                <th>File</th>
+                                
 
+                            </tr>
+                        </thead>
 
-                                    </tr>
-                                </thead>
+                        <tbody>
+                            <?php while($mssg=mysqli_fetch_assoc($mssgData)) { ?>
+                            <tr>
+                                <td><?php  echo $mssg["dept_sessions"];?></td>
+                               
+                                <td><?php  echo $mssg["dept"];?></td>
+                                <td ><div style="color:red"><?php  echo $mssg["mssg"];?></div></td>
+                                <td><a class="btn btn-success ms-0 " href="download.php?file=<?php echo $mssg['files'] ?>">Download</a><br></td>
+                                
 
-                                <tbody>
-                                    <?php while($mssg=mysqli_fetch_assoc($mssgData)) { ?>
-                                    <tr>
-                                        <td><?php  echo $mssg["dept_sessions"];?></td>
-
-                                        <td><?php  echo $mssg["dept"];?></td>
-                                        <td>
-                                            <div id="text" style="color:red"><?php  echo $mssg["mssg"];?></div>
-                                        </td>
-                                        <td><a id="btn" class="btn btn-success ms-0 "
-                                                href="download.php?file=<?php echo $mssg['files'] ?>">Download</a><br>
-                                        </td>
-
-
- 
-
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Session</th>
-                                        <th>Department</th>
-                                        <th>Notice</th>
-                                        <th>File</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
+                                   
+                                    
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <th>Session</th>
+                                <th>Department</th>
+                                <th>Notice</th>
+                                <th>File</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
-
-
-
-
-
-
             </div>
+            </div>
+           
+           
+
+
+
+
+        </div>
         </div>
     </section>
     <!-- Optional JavaScript -->
@@ -178,9 +161,6 @@
         $('#table_data').DataTable();
     });
     </script>
-   <script>
-   
-</script>
 </body>
 
 </html>

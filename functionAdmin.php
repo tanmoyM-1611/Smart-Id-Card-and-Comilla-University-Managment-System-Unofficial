@@ -557,6 +557,15 @@
                        
                     }
                 }
+                // display_result_SubjectWise_all_forViewResult
+                public function   display_result_SubjectWise_all_forViewResult($data1,$data2,$data3){
+                    $query = "SELECT * from result_subjectwise where s_session='$data1' AND s_semester='$data2' AND s_dept LIKE '%$data3%' ";
+                    if(mysqli_query($this->conn,$query)){
+                        $return_data2=mysqli_query($this->conn,$query);
+                        return $return_data2;
+                       
+                    }
+                }
 }
 
        ?>
@@ -565,7 +574,9 @@
 
 
 
-
+<!-- $projectAdmin=new deptProject;
+          $subWiseResultInfo=new deptProject; 
+       $data3=$subWiseResultInfo->display_result_SubjectWise_all_forViewResult($id_dept,$id_session,$id_semester); -->
 
 
 

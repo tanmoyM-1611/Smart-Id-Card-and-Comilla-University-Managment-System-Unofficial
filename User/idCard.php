@@ -459,9 +459,7 @@
                 <h3>About</h3>
             </a>
             
-            <a href="contact.php">
-                <h3>Contact</h3>
-            </a>
+           
             <div style="padding-top:200px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>

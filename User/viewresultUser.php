@@ -1,53 +1,109 @@
-<?php 
+<?php
+  include("../functionAdmin.php")  ; 
+  error_reporting(E_ERROR | E_PARSE);
+  session_start();
+  $id=$_SESSION['userID'];
+  if($id==null){
+   header("location:login.php");
+  }
+  
+ 
+ error_reporting(E_ERROR | E_PARSE);
+  $studentInfo=new deptProject;
+  $courseInfo=new deptProject;
+ 
+  if(isset($_POST['search'])){
        
-       include("../functionAdmin.php")  ;
-       
-        session_start();
-        $id=$_SESSION['userID'];
-        if($id==null){
-         header("location:login.php");
-        }
-       
-                                      
+       $id_no = $_POST['id_no'];
+       $id_session=$_POST['Student_session'];
+       $id_semester=$_POST['Student_semester'];
+       $semester_year=$_POST["semester_finalDate"];
+       $id_dept=$_POST['Student_dept'];
        $projectAdmin=new deptProject;
+       
+       $data= $studentInfo->display_data_by_id_fromUser($id_no);
+       
+       
+             if($data){    
+                       
+                      $stdDeptName=$data["stdDeptName"];
+  $stdHallName=$data["stdHallName"];
+  $stdName=$data["stdName"];
+  $stdFatherName=$data["stdFatherName"];
+  $stdMotherName=$data["stdMotherName"];
+  $stdRegNumber=$data["stdRegNumber"];
+  $stdSession=$data["stdSession"];
+  $stdDOB=$data["stdDOB"];
+  $stdAge=$data["stdAge"];
+  $stdReligion=$data["stdReligion"];
+  $stdNationality=$data["stdNationality"];
+  $stdPhnNumber=$data["stdPhnNumber"];
+  $stdPresentAddress=$data["stdPresentAddress"];
+  $stdParmanentAddress=$data["stdParmanentAddress"];
+  $std_img=$data["std_img"];
+       
+             }
 
-     
+             else{
+              echo '<script type ="text/JavaScript">';  
+              echo "alert('Dont found any data!')";  
+              echo '</script>'; 
+             }
+             $projectAdmin=new deptProject;
+             $subWiseResultInfo=new deptProject;
+         $stdFormData= $projectAdmin->display_formfillinfoById($stdRegNumber, $id_semester);
+         $data2=$courseInfo->displayCourseDataBYSemester( $stdFormData["session_year"], $stdFormData["semester_no"], $stdFormData["dept"]);
 
-    if(isset($_POST["enter_next"])){
-         $student_id=$_POST["Student_id"];
-         $student_session=$_POST["Student_session"];
-         $student_semester=$_POST["Student_semester"];
-         $student_department=$_POST["Student_dept"];
+        
+         
+          $data3=$subWiseResultInfo->display_result_SubjectWise_by_idforViewResult($stdRegNumber,$stdFormData["semester_no"]);
+          $data4=$subWiseResultInfo->display_result_SubjectWise_by_idforViewResult($stdRegNumber,$stdFormData["semester_no"]);
 
-    }
+  }
+
+
+//  $resultSubjectWise_Student=new deptProject;
+// //   add form fill data
+// if(isset($_POST['add_result_subjectwise'])){
+        
+//         $resultSubjectWise_Student->add_result_SubjectWise($_POST);
+         
+// }   
+// if(isset($data3)){ 
+//     $t=0;
+//      while($subject_wiseResult=mysqli_fetch_assoc($data3)) { 
+//        $t=$t+$subject_wiseResult["course_credit"];
+
+//      } 
+
+//      }
+
+?>
+ <?php 
+if(!empty($data3)){ 
+    $totalCredit=0;
+  
+     while($subject_wiseResult=mysqli_fetch_assoc($data3)) { 
+       $totalCredit=$totalCredit+$subject_wiseResult["course_credit"];
+       
+       $total=$total+$subject_wiseResult["course_credit"]*$subject_wiseResult["cgpa"];
+     } 
 
     
-    // $resultInfoStudent= new deptProject;
-    // if(isset($_POST["enter"])){
-    //     $resultInfoStudent->add_result_StdInfo($_POST);
-    //         if($resultInfoStudent){
-    //          echo '<script type ="text/JavaScript">';  
-    //          echo "alert('Info Added Succesfully')";  
-    //          echo '</script>'; 
-    //         }
-     
-    //         else{
-    //          echo '<script type ="text/JavaScript">';  
-    //          echo "alert('Info Donot Added Succesfully')";  
-    //          echo '</script>'; 
-    //         }
-    //          }
-             ?>
-<!doctype html>
+     $totalCgpa=$total/$totalCredit;
+
+     }
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>View Result</title>
-
-    <link href="style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form FillUp</title>
     <link rel="stylesheet" href="../User//style.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -62,17 +118,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Delius' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<body class="sb-nav-fixed">
+<body>
     <section>
-        <?php
-       
-        ?>
+
+
+
+        <!-- Navigation bar start  -->
         <div class="sidenav">
-            <a href="home.php">
+        <a href="home.php">
                 <h3>Home</h3>
             </a>
             <a href="idCard.php">
@@ -87,16 +154,14 @@
             <a href="about.php">
                 <h3>About</h3>
             </a>
+            
+            
 
-            <a href="contact.php">
-                <h3>Contact</h3>
-            </a>
             <div style="padding-top:200px" class="ms-4">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
-        <!-- Navigation bar start  -->
-        <div class="main">
+        <div class="main ">
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">CSE,Comilla University</a>
@@ -106,7 +171,8 @@
                 <ul class="nav justify-content-end">
 
                     <li class="nav-item">
-                    <a class="nav-link" href="notification.php"><i style="font-size:20px" class="fa-solid fa-bell"></i></a>
+                        <a class="nav-link" href="notification.php"><i style="font-size:20px"
+                                class="fa-solid fa-bell"></i></a>
                     </li>
 
                 </ul>
@@ -115,86 +181,230 @@
 
             <br>
             <div>
-                <h1 style="text-align:center;color:#351C75;font-family:Delius"><b>RESULT!</b></h1>
+                <h1 style="text-align:center;color:#351C75;font-family:Delius"><b>VIEW RESULT(with cgpa)!</b></h1>
             </div>
+            <div style="" class="col-sm-6 container  mt-3 mb-3 ">
+                <div class="card border-5 rounded-3">
+                    <div class="card-body">
+                        <form class="form" method="POST" action="">
 
-            <div class="row" style="margin: 0px 20px 5px 20px">
-                <div class="col-sm-6 container mt-3 mb-3">
-                    <div class="card border-5 rounded-3">
-                        <div class="card-body">
-                            <form class="form" method="POST" action="viewresultUser2.php">
-                                <label for="exampleInputEmail1">Student Department:</label>
-                                <!-- <input name="Student_dept" id="student_id" class="form-control mt-3" 
-                                    > -->
-                                <select name="Student_dept" id="student_semester" class="form-select mt-3"
-                                    aria-label="Default select example" required>
-                                    <option selected>Choose Your Department</option>
-                                    <option value="CSE">CSE</option>
-                                    <option value="ICT">ICT</option>
-                                    <option value="LAW">LAW</option>
-                                </select>
-                                <br>
-                                <label for="exampleInputEmail1">Student ID:</label>
-                                <input name="Student_id" id="student_id" class="form-control mt-3" type="search"
-                                    value="">
-                                <small id="emailHelp" class="form-text text-muted">Every student's should have unique Id
-                                    no.</small>
-                                <br>
-                                <!-- Session -->
-                                <label class="mt-3" for="exampleInputEmail1">Session:</label>
-                                <!-- <input name="Student_session" id="student_session" class="form-control mt-3" type="search"  value=""
-                                   > -->
-                                <select name="Student_session" id="student_semester" class="form-select mt-3"
-                                    aria-label="Default select example">
-                                    <option selected>Choose Your Semester</option>
-                                    <option value="2017-18">2017-18</option>
-                                    <option value="2018-19">2018-19</option>
-                                    <option value="2019-20">2019-20</option>
-                                </select>
+                            <label for="exampleInputEmail1">Registration Number:</label>
+                            <input class="form-control mt-3" type="search" placeholder="Enter Id Card No." name="id_no"
+                                required>
 
-                                <!-- Semester -->
-                                <label class="mt-3" for="exampleInputEmail1">Semester:</label>
-                                <select name="Student_semester" id="student_semester" class="form-select mt-3"
-                                    aria-label="Default select example required">
-                                    <option selected>Choose Your Semester</option>
-                                    <option value="1">1st</option>
-                                    <option value="2">2nd</option>
-                                    <option value="3">3rd</option>
-                                </select>
+                            <!--Department  -->
+                            <label class="mt-3" for="exampleInputEmail1">Department:</label>
+                            <select name="Student_dept" id="student_dept" class="form-select mt-3"
+                                aria-label="Default select example" placeholder="Choice Your Session">
+                                <option selected>Choose Department</option>
+                                <option value="CSE">CSE</option>
+                            </select>
+                            <!-- Session -->
+                            <label class="mt-3" for="exampleInputEmail1">Session:</label>
+                            <select name="Student_session" id="student_session" class="form-select mt-3"
+                                aria-label="Default select example" placeholder="Choice Your Session">
+                                <option selected>Choose Your Session</option>
+                                <option value="2017-18">2017-18</option>
+                                <option value="2018-19">2018-19</option>
+                                <option value="2019-20">2019-20</option>
+                            </select>
 
-                                <br>
-                                <div style="text-align:center"> <button class="btn btn-outline-primary mt-3 "
-                                        type="submit" name="enter_next">Next</button></div>
-                            </form>
-                        </div>
+                            <!--Semester  -->
+                            <label class="mt-3" for="exampleInputEmail1">Semester:</label>
+                            <select name="Student_semester" id="student_semester" class="form-select mt-3"
+                                aria-label="Default select example">
+                                <option selected>Choose Your Semester</option>
+                                <option value="1">1st</option>
+                                <option value="2">2nd</option>
+                                <option value="3">3rd</option>
+                            </select>
+                            <!-- Semester Final Year -->
+
+
+                            <br>
+                            <div style="text-align:center ;">
+                                <button class="btn btn-outline-primary mt-3 " type="submit"
+                                    name="search">Generate</button>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
+            </div>
+
+
+            <div style="margin-left:25px" class="col-sm-12  mt-5 mb-5  container  ">
+                <header id="form-body1" class="container card card-body mt-5 rounded-3  border-5 ">
+
+                 <div id ="body-1">
+
+                
+                    <div  style="text-align:center"><b>Id:<?php echo  $stdRegNumber?></b>
+                        <br>
+                        <b>Session:<?php echo  $stdSession?></b>
+
+
+                        <br>
+                        <b>Semester:<?php echo  $stdFormData["semester_no"]?></b>
+                        <br>
+                        <b>Total Credit:<?php echo $totalCredit;?></b>
+                        <br>
+                        <b>Total CGPA:<?php echo   $totalCgpa;?></b>
+
+
+                    </div>
+
+
+               
+
+                    <div class="card card-body ">
+
+                      
+                        <?php if(isset($data4)) {?>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="table_data" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Course Name</th>
+                                            <th>Course Credit</th>
+
+                                            <th>Total Mark(Subject Wise)</th>
+                                            <th>GPA(Subject Wise)</th>
+                                             
+
+
+
+                                        </tr>
+                                    </thead>
+
+                                  
+                                   
+                                    
+                                    <tbody>
+                                      
+                                  
+                                        <?php while($subject_wiseResult2=mysqli_fetch_assoc($data4)) { ?>
+                                           
+
+                                        <tr>
+                                           
+                                           
+
+                                            <td><?php  echo $subject_wiseResult2["course_name"];?></td>
+                                            <td><?php  echo $subject_wiseResult2["course_credit"];?>
+                                            </td>
+
+                                            <td><?php  echo $subject_wiseResult2["total_mark"];?></td>
+
+                                            <td><?php  echo $subject_wiseResult2["cgpa"];?>
+                                            </td>
+                                           
+                                            
+                                             
+                                            
+                                            <!-- <td><button name="add_result_subjectwise" class="btn btn-outline-primary " type="submit">Submit</button></td> -->
+                                        </tr>
+
+                                      
+
+
+
+                                        <?php } ?>
+                                      
+                                      
+                                     
+                         
+
+
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr>
+
+                                            <th>Course Name</th>
+                                            <th>Course Credit</th>
+                                            <th>Total Mark</th>
+                                            <th>CGPA</th>
+
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                   
+                            </div>
+                           
+                          
+                          <?php } ?>
+
+                          <?php   if(empty($data4) ) { echo    
+                                           "<div style='text-align:center;color:red'><h4>'Please Enter Student Roll, Session & Semester For See Courses Result'</h4></div>";
+                                                }
+                                        ?>
+                       
+
+                    </div>
+                    
+                    </div>
 
 
             </div>
+  <div style="text-align:center"> <button id="download" class="downloadtable btn btn-primary mt-2">
+                        Download Result</button>
+                </div>
 
+            <!-- end -->
         </div>
 
 
 
 
     </section>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh3AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-    </script>
-
-
+    <!-- <script src="../User//multiselect-dropdown.js"></script> -->
+    
+    <script src="js/jspdf.debug.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/html2pdf.min.js"></script>
     <script>
+    // document.getElementById("apk").style.display = "none";
+    window.onload = function() {
+        document.getElementById("download")
+            .addEventListener("click", () => {
 
+                const formBody = this.document.getElementById("body-1");
+
+                // console.log(idBody);
+                // console.log(window);
+                var opt = {
+                    margin: 1,
+                    filename: 'myResult.pdf',
+                    image: {
+                        type: 'jpeg',
+                        quality: 0.98
+                    },
+                    html2canvas: {
+                        scale: 2
+                    },
+                    jsPDF: {
+                        unit: 'in',
+                        format: 'letter',
+                        orientation: 'landscape'
+                    }
+
+                };
+                html2pdf().from(formBody).set(opt).save();
+                document.getElementById("download").style.display = "none";
+                
+
+            })
+    }
+
+    $(".chosen-select").chosen({
+        no_results_text: "Oops, nothing found!"
+    })
     </script>
 </body>
 

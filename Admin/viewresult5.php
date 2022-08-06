@@ -88,7 +88,7 @@ if(!empty($data3)){
        $total=$total+$subject_wiseResult["course_credit"]*$subject_wiseResult["cgpa"];
      } 
 
-    
+    $totalCgpa=$total/$totalCredit;
 
 
      }
@@ -168,7 +168,7 @@ if(!empty($data3)){
 
             <br>
             <div>
-                <h1 style="text-align:center;color:#351C75;font-family:Delius"><b>VIEW RESULT!</b></h1>
+                <h1 style="text-align:center;color:#351C75;font-family:Delius"><b>VIEW RESULT(with cgpa)!</b></h1>
             </div>
             <div style="" class="col-sm-6 container  mt-3 mb-3 ">
                 <div class="card border-5 rounded-3">
@@ -234,7 +234,7 @@ if(!empty($data3)){
                         <br>
                         <b>Total Credit:<?php echo $totalCredit;?></b>
                         <br>
-                        <b>Total CGPA:<?php echo   $total/$totalCredit;?></b>
+                        <b>Total CGPA:<?php echo    $totalCgpa;?></b>
 
 
                     </div>
@@ -254,8 +254,8 @@ if(!empty($data3)){
                                             <th>Course Name</th>
                                             <th>Course Credit</th>
 
-                                            <th>Total Mark</th>
-                                            <th>CGPA</th>
+                                            <th>Total Mark(Subject Wise)</th>
+                                            <th>GPA(Subject Wise)</th>
                                              
 
 

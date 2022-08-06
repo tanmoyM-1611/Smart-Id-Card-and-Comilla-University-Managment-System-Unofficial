@@ -77,7 +77,7 @@
             </div>
         </div>
         <!-- Navigation bar start  -->
-        <div class="main">
+        <div class="main ">
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="homeAdmin.php">CSE,Comilla University</a>
@@ -130,6 +130,9 @@
 
 
             </div>
+            <div  style="text-align:center">
+                    <a class="btn btn-warning ms-3  mt-0" href="viewNotice.php">VIEW NOTICE</a>
+                </div>
 
         </div>
 
