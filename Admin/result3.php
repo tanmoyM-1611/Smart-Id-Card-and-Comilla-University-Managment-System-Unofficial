@@ -7,7 +7,7 @@
    header("location:login.php");
   
  }
- error_reporting(E_ERROR | E_PARSE);
+//  error_reporting(E_ERROR | E_PARSE);
   $studentInfo=new deptProject;
   $courseInfo=new deptProject;
  
@@ -118,7 +118,7 @@
         <a href="homeAdmin.php"><h5>Home</h5></a>
             <a href="courses.php"><h5>Courses</h5></a>
             <a href="resultAdmin.php"><h5>Result</h5></a>
-            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="formfill_dept.php"><h5>Form Receipt</h5></a>
             <a href="notification.php"><h5>Notice+</h5></a>
 
             <div style="padding-top:350px" class="ms-3">

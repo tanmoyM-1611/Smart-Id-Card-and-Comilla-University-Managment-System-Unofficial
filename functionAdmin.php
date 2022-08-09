@@ -243,11 +243,11 @@
 
     //verified
 
-    public function verified_data($data){
+    public function verified_data($data1,$data2){
         
-        $idno=$data['std_id'];
+        $idno=$data1;
 
-        $ustdStatus=$data["ustdStatus"];
+        $ustdStatus=$data2;
     
         $query="UPDATE student_info SET stdStatus='$ustdStatus' WHERE id=$idno";
  

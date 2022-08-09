@@ -249,7 +249,7 @@ if(!empty($data3)){
                         <br>
                         <b>Total Credit:<?php echo $totalCredit;?></b>
                         <br>
-                        <b>Total CGPA:<?php echo   $totalCgpa;?></b>
+                        <b>Total CGPA:<?php echo  number_format($totalCgpa,2);?></b>
 
 
                     </div>

@@ -169,7 +169,7 @@ if(isset($_POST["submit_form"])){
                                 <option selected>Choose Department</option>
                                 <option value="CSE">CSE</option>
                                 <option value="ICT">ICT</option>
-                                <option value="LAW">LAW</option>
+                               
                             </select>
                             <!-- Session -->
                             <label class="mt-3" for="exampleInputEmail1">Session:</label>
@@ -362,7 +362,7 @@ if(isset($_POST["submit_form"])){
                             </div>
                             <!-- Cou Authority Bank -->
                             <div class="col-4">
-                                <label for="" class="form-label">Cou Authority Receipt</label>
+                                <label for="" class="form-label">Cou Authority Bank Receipt</label>
                                 <input type="text" name="fcou_stdBank" class="form-control" id="" value="<?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) { echo $stdFormData["cou_bank"];}?>">
                             </div>
                             <!-- Cou Hall Authority Bank -->
@@ -396,7 +396,7 @@ if(isset($_POST["submit_form"])){
 
                             </div> -->
                             <div class="col-md-12">
-                                <label for="" class="form-label">Semester Final Year:</label>
+                                <label for="" class="form-label">Semester Final Examination Year:</label>
                                 <input type="text" class="form-control" name="stdSemYear" id=""
                                     value=" <?php if(isset($_POST["semester_finalDate"])){echo  $_POST["semester_finalDate"];}?>">
                             </div>
@@ -593,7 +593,7 @@ if(isset($_POST["submit_form"])){
                         </div>
 
                     </div>
-
+<!-- download button -->
                 </div>
                 <?php if($stdFormData["cou_status"]==1 && $stdFormData["couHall_status"]==1 && $stdFormData["couDept_status"]==1) {
              echo   ' <div style="text-align:center"> <button href="javascript:void(0)" id="download2"

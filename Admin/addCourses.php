@@ -21,7 +21,7 @@ $addCourseInfo=new deptProject;
 
        else{
         echo '<script type ="text/JavaScript">';  
-        echo "alert('Course Don't Added Succesfully')";  
+        echo "alert('Course Don't Add Succesfully')";  
         echo '</script>'; 
        }
         }
@@ -74,10 +74,10 @@ $addCourseInfo=new deptProject;
         <a href="homeAdmin.php"><h5>Home</h5></a>
             <a href="courses.php"><h5>Courses</h5></a>
             <a href="resultAdmin.php"><h5>Result</h5></a>
-            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="formfill_dept.php"><h5>Form Receipt</h5></a>
             <a href="notification.php"><h5>Notice+</h5></a>
 
-            <div style="padding-top:350px" class="ms-3">
+            <div style="padding-top:320px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -132,7 +132,7 @@ $addCourseInfo=new deptProject;
                                     <option selected>Choose Department</option>
                                     <option value="CSE">CSE</option>
                                     <option value="ICT">ICT</option>
-                                    <option value="LAW">LAW</option>
+                                    
                                 </select>
 
                                 <br>

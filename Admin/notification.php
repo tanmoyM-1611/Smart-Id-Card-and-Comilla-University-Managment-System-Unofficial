@@ -42,7 +42,8 @@
     <title>Add Notification</title>
 
     <link href="style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../User//style.css">
+    <link href="../Admin//style.css" rel="stylesheet" />
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -69,10 +70,10 @@
         <a href="homeAdmin.php"><h5>Home</h5></a>
             <a href="courses.php"><h5>Courses</h5></a>
             <a href="resultAdmin.php"><h5>Result</h5></a>
-            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="formfill_dept.php"><h5>Form Receipt</h5></a>
             <a href="notification.php"><h5>Notice+</h5></a>
 
-            <div style="padding-top:320px" class="ms-3">
+            <div style="padding-top:300px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>
@@ -80,7 +81,7 @@
         <div class="main ">
             <nav style="background-color: #e3f2fd" class="navbar navbar-expand-lg navbar-light ">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="homeAdmin.php">CSE,Comilla University</a>
+                    <a class="navbar-brand" href="homeAdmin.php">Comilla University</a>
 
                 </div>
             </nav>
@@ -103,8 +104,7 @@
                                 aria-label="Default select example" placeholder="Choice Your Session">
                                 <option selected>Choose Department</option>
                                 <option value="CSE">CSE</option>
-                                <option value="ICT">ICT</option>
-                                <option value="LAW">LAW</option>
+                                
                             </select>
                             <!-- Session -->
                             <label class="mt-3" for="exampleInputEmail1">Session:</label>

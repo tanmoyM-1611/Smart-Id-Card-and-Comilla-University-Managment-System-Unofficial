@@ -82,13 +82,13 @@ if(isset($_POST['search'])){
                 <h5>Result</h5>
             </a>
             <a href="formfill_dept.php">
-                <h5>Form Recipt</h5>
+                <h5>Form Receipt</h5>
             </a>
             <a href="notification.php">
                 <h5>Notice+</h5>
             </a>
 
-            <div style="padding-top:380px" class="ms-3">
+            <div style="padding-top:350px" class="ms-3">
                 <a href="logout.php"><button type="button" class="btn btn-success">Log out</button></a>
             </div>
         </div>

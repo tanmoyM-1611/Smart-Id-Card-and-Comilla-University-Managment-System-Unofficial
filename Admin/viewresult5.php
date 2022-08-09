@@ -141,7 +141,7 @@ if(!empty($data3)){
         <a href="homeAdmin.php"><h5>Home</h5></a>
             <a href="courses.php"><h5>Courses</h5></a>
             <a href="resultAdmin.php"><h5>Result</h5></a>
-            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="formfill_dept.php"><h5>Form Receipt</h5></a>
             <a href="notification.php"><h5>Notice+</h5></a>
 
             <div style="padding-top:350px" class="ms-3">
@@ -234,7 +234,7 @@ if(!empty($data3)){
                         <br>
                         <b>Total Credit:<?php echo $totalCredit;?></b>
                         <br>
-                        <b>Total CGPA:<?php echo    $totalCgpa;?></b>
+                        <b>Total CGPA:<?php echo   number_format($totalCgpa,2);?></b>
 
 
                     </div>

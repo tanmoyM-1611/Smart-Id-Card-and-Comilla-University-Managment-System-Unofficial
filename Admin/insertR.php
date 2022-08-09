@@ -19,7 +19,9 @@ foreach($course_name as $key=>$value){
 $q1="INSERT INTO result_subjectwise(course_name,course_credit,total_mark,cgpa,s_reg,s_dept,s_session,s_semester) VALUE('$value','$course_credit[$key]','$total_mark[$key]','$subject_cgpa[$key]','$std_reg[$key]','$std_dept[$key]','$std_session[$key]',$std_semester[$key])";
 
 if(mysqli_query($conn,$q1)){
-    echo "data saved succesfully";
+   
+    echo "data saved succesfully"; 
+    
 }
 
 }

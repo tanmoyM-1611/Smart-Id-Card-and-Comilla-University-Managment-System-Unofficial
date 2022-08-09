@@ -34,6 +34,7 @@
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
     <link href="../Admin//style.css" rel="stylesheet" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -57,7 +58,7 @@
             <a href="homeAdmin.php"><h5>Home</h5></a>
             <a href="courses.php"><h5>Courses</h5></a>
             <a href="resultAdmin.php"><h5>Result</h5></a>
-            <a href="formfill_dept.php"><h5>Form Recipt</h5></a>
+            <a href="formfill_dept.php"><h5>Form Receipt</h5></a>
             <a href="notification.php"><h5>Notice+</h5></a>
            
             
@@ -136,7 +137,7 @@
 
                                             <?php   if(($student["stdStatus"])==0)  { echo    
                                            "<a id='ver' class='btn btn-warning m mt-1 mb-1'
-                                                href='verified.php?status=verified&&id=$student[id]'>VERIFIED</a>";
+                                                href='verified.php?status=1&&id=$student[id]'>VERIFIED</a>";
                                                 }
                                                
                                                 ?>
